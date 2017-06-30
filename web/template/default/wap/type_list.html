@@ -1,0 +1,40 @@
+{template 'wap/header.html'}<div class="blank10"></div>
+<div class="title"><a>{type::getpositionhtml($type['typeid'])}</a>/Type</div>
+
+{if $subids}
+<div id="search">
+{loop $subids $id}
+<a href="{category::url($id)}">{$category[$id][catname]}</a> |
+{/loop}
+</div>
+<div class="search_b"></div>
+{/if}
+
+<div class="clear box">
+<div class="p10">
+
+
+<div class="blank10"></div>
+{$category[$catid][categorycontent]}
+
+<ul class="news_list p10">
+{loop $archives $i $archive}
+<li><a title="{$archive[stitle]}" href="{$archive[url]}">{$archive[title]}</a></li>
+{/loop}
+</ul>
+<div class="blank10"></div>
+<div class="blank10"></div>
+<!-- 列表分页开始 -->
+{if isset($pages)}
+{type_pagination($typeid)}
+{/if}
+<!-- 列表分页结束 -->
+
+
+<div class="blank10"></div>
+<div class="blank10"></div>
+<a href="javascript:history.back(-1)">{lang(backuppage)}</a>	|	<a href="{$base_url}/wap/">{lang(backhome)}</a>
+<div class="blank10"></div>
+</div>
+</div>
+{template 'wap/footer.html'}

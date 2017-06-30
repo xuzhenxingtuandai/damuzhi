@@ -1,0 +1,130 @@
+{template 'header.html'}
+<div id="main">
+  <div class="lr">
+
+    <div class="left">
+    <!--左边开始--> 
+      {template 'left_guestbook.html'}
+    <!--左边结束-->  
+    </div>
+	
+    <div class="right">
+    <!--右边开始--> 
+	   <div class="product">
+		 <div class="product_title">
+           <div style="float:left;"><h2>{lang('guestbook')}</h2></div>
+           <div style="float:right;">{template 'position.html'}</div>
+		 <div style="clear:both"></div>
+		 </div>
+		 <div class="product_con2" style="padding:16px;">
+         
+
+
+
+<div style="text-align:center;color:red;"><?php if(hasflash()) { ?>
+<?php echo showflash(); ?>
+<?php } ?>
+</div>
+<style>
+table tr td {line-height:32px;}
+table input {height:16px;font-size:14px;line-height:16px;}
+table #content {width:305px;height:200px;}
+</style>
+<form method="post" action="" name="form1">
+<table width="650" border="0" align="center" cellpadding="7" cellspacing="0" style="font-size:14px;">
+<tr>
+<td width="100">&nbsp;&nbsp;&nbsp;{lang('contactname')}：</td>
+<td>{form::input('nickname',get('username'))}
+<span style="color:#FF0000"> *</span></td>
+<td width="100"></td>
+ </tr>
+<tr>
+<td width="100">&nbsp;&nbsp;&nbsp;{lang('guesttel')}：</td>
+<td>{form::input('guesttel',get('guesttel'))}
+<span style="color:#FF0000"> *</span></td>
+<td width="100"></td>
+</tr>
+<tr>
+<td width="100">&nbsp;&nbsp;&nbsp;{lang('guestemail')}：</td>
+<td>{form::input('guestemail',get('guestemail'))}
+<span style="color:#FF0000"> *</span></td>
+<td width="100"></td>
+</tr>
+<tr>
+<td width="100">&nbsp;&nbsp;&nbsp;{lang('guestqq')}：</td>
+<td>{form::input('guestqq',get('guestqq'))}
+<span style="color:#FF0000"> *</span></td>
+<td width="100"></td>
+ </tr>
+{loop $field $f}
+<?php
+ $name=$f['name'];
+ if($name==$primary_key) continue; ?>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;{$name|lang}：</td>
+<td colspan="2">{form::getform($name,@$form,$field,@$data)} </td>
+</tr>
+ {/loop}
+<tr>
+<td colspan="3" align="center" height="10">&nbsp;
+</td>
+</tr>
+<?php if(config::get('verifycode')){?>     
+<tr>
+<td>&nbsp;&nbsp;&nbsp;{lang('verifycode')}：</td>
+<td colspan="2"><span style="float:left;">{verify()}</span><span style="float:left;padding-left:10px;"><input type='text' id="verify"  name="verify" size="10" style="height:16px;" /></span><span style="color:#FF0000;float:left;">*</span>&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<?php } ?>
+<tr>
+<td colspan="3"><input type="submit" name="submit" value=" {lang('submit')} " class="btn" /></td>
+</tr>
+</table>
+</form>
+
+<div class="blank30"></div>
+{if $user}
+
+
+<div class="blank30"></div>
+<div class="line_2"></div>
+<div class="comm"><strong>{lang('guestlist')}：</strong></div>
+<div class="blank30"></div>
+
+<dl class="comment_list">
+{loop $data $d}
+<dt><strong>{lang('username')}：{$d[username]}</strong><span>{sdate($d[adddate],'Y-m-d H:i')}</span></dt>
+<dd>{$d[content]}</dd>
+{if $d['reply']}<dd class="admin_reply">
+{lang('adminreply')}：
+{$d['reply']}
+</dd>
+{/if}
+{/loop}
+</dl>
+
+<div class="clear"></div>
+<div class="blank30"></div>
+<div class="pages">
+<?php echo pagination::html($record_count); ?>
+</div>
+{/if}
+
+<style>
+#title {width:146px;}
+</style>
+
+
+
+
+
+
+
+
+         </div>
+       </div>
+	<!--右边结束--> 
+    </div>
+    <div style="clear:both"></div>
+  </div>
+</div>
+{template 'footer.html'}

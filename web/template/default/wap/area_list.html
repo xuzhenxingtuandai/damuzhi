@@ -1,0 +1,38 @@
+{template 'wap/header.html'}<div class="blank10"></div>
+<div class="title"><a>{area::getpositonhtml(get('province_id'),get('city_id'),get('section_id'),get('id'))}</a> / Area</div>
+
+{if $subids}
+<div id="search">
+{loop $subids $id}
+<a href="{category::url($id)}">{$category[$id][catname]}</a> |
+{/loop}
+</div>
+<div class="search_b"></div>
+{/if}
+
+
+<div class="clear box">
+<div class="p10">
+
+<div class="blank10"></div>
+{$category[$catid][categorycontent]}
+
+<ul class="news_list p10">
+{loop $archives $i $archive}
+<li><a title="{$archive[stitle]}" href="index.php{$archive[url]}">{$archive[title]}</a></li>
+{/loop}
+</ul>
+<div class="blank10"></div>
+<div class="blank10"></div>
+{if isset($pages)}
+{category_pagination($catid)}
+{/if}
+
+
+<div class="blank10"></div>
+<div class="blank10"></div>
+<a href="javascript:history.back(-1)">{lang(backuppage)}</a>	|	<a href="{$base_url}/wap/">{lang(backhome)}</a>
+<div class="blank10"></div>
+</div>
+</div>
+{template 'wap/footer.html'}

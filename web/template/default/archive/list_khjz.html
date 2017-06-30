@@ -1,0 +1,65 @@
+{template 'header.html'}
+<div id="main">
+  <div class="lr">
+
+    <div class="left">
+    <!--左边开始--> 
+      {template 'left.html'}
+    <!--左边结束-->  
+    </div>
+	
+    <div class="right">
+    <!--右边开始--> 
+	   <div class="product">
+		 <div class="product_title">
+           <div style="float:left;"><h2>{$category[$catid][catname]}</h2></div>
+           <div style="float:right;">{template 'position.html'}</div>
+		   <div style="clear:both"></div>
+		 </div>
+		 <div class="product_con2">
+         
+         
+         
+<div class="wu_khjz_nner">
+     {loop $archives $i $archive}
+        <dl>
+          <dt><a href="{$archive[url]}">
+          <img src="{$archive[thumb]}" />
+          </a></dt>
+          <dd>
+            <h3><a href="{$archive[url]}">{$archive[title]}</a></h3>
+            <p>{cut(strip_tags($archive['introduce']),155)}……</p>
+            <span><a href="{$archive[url]}">
+            <img src="{$skin_path}/images/xqlj.jpg" alt="" /></a></span></dd>
+        </dl>
+     {/loop}	
+     <div style="clear:both"></div> 
+</div>
+
+<div class="clear"></div>
+<div class="blank30"></div>
+
+<!-- 内容列表分页开始 -->
+{if isset($pages)}
+{category_pagination($catid)}
+{/if}
+<!-- 内容列表分页结束 -->
+<div class="blank30"></div>
+<a title="{lang(gotop)}" href="#" class="clear floatright"><img alt="{lang(gotop)}" src="{$skin_url}/images/gotop.gif"></a>
+<div class="blank30"></div>
+<div class="clear"></div>
+
+
+
+
+
+
+		 
+         </div>
+       </div>
+	<!--右边结束--> 
+    </div>
+    <div style="clear:both"></div>
+  </div>
+</div>
+{template 'footer.html'}

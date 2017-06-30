@@ -1,0 +1,231 @@
+{template 'header.html'}
+<!-- 面包屑导航开始 -->
+<div class="clear box">
+{template 'position.html'}
+</div><div class="blank5"></div>
+<!-- 面包屑导航结束 -->
+
+<!-- 中部开始 -->
+<div class="clear box c_bg">
+<div class="c_top"></div>
+
+<!-- 左侧开始 -->
+<div class="w_250">
+
+{template 'left.html'}
+
+<div class="clear"></div>
+</div>
+<!-- 左侧结束 -->
+
+
+<!-- 右侧开始 -->
+<div class="w_700">
+
+
+<!-- 内容标题 -->
+<div class="archive_title"><div class="r_box_top"></div><div class="r_box"><h1>{$archive[title]}</h1></div><div class="r_box_bottom"></div></div>
+
+<div id="content" class="clear">
+
+
+<div class="contentinfo">{lang(author)}：<a href="javascript:void(0);" onclick="javascript:document.getElementById('addcontentuser').style.display='block';">{$archive[author]}</a>&nbsp;&nbsp; {lang(adddate)}：{$archive[adddate]}&nbsp;&nbsp; {lang(view)}：{view_js($archive[aid])}</div>
+
+
+<!-------------------发布内容会员信息----------------------->
+{if $archive[userid]!='-999'}
+<div id="addcontentuser" style="display:none"> 
+<strong>{lang(publisherinformation)}》</strong> 
+<!-- {$adduser[userid]} -->
+{lang('{lang(username)}')}：{$adduser[username]} {lang('nickname')}：{$adduser[nickname]} QQ：{$adduser[qq]} {lang('guestemail')}：{$adduser[e_mail]} {lang('orderaddress')}：{$adduser[address]} {lang('guesttel')}：{$adduser[tel]} {lang('userinfo')}：{$adduser[intro]}
+</div>  
+    
+{/if}
+<!------------------发布内容会员信息------------------------>
+<!-- 正文 -->
+{$archive[content]}
+<div class="blank30"></div>
+
+
+{if $archive[attr2]}
+<!-- tag -->
+<div class="blank10"></div>
+{lang(productprice)}： {$archive[attr2]}
+{/if}
+
+{if $archive[tag]}
+<!-- tag -->
+<div class="blank10"></div>
+{lang(tag)}： {$archive[tag]}
+{/if}
+
+{if $archive[special]}
+<!-- 专题 -->
+<div class="blank10"></div>
+{lang(special)}： {$archive[special]}
+{/if}
+
+
+{if $archive[type]}
+<!-- 分类 -->
+<div class="blank10"></div>
+{lang(type)}： {$archive[type]}
+{/if}
+
+
+{if $archive[area]}
+<!-- 地区 -->
+<div class="blank10"></div>
+{lang(area)}： {$archive[area]}
+{/if}
+
+<div class="blank30"></div>
+{if $pages>1}
+<!-- 内页分页 -->
+<div class="blank10"></div>
+<div class="pages">
+{archive_pagination($archive)}
+</div>
+<div class="blank30"></div>
+{/if}
+
+<?php
+/*$set_field=type::getpositionlink($data['typeid']);
+$set_fields=array();
+if(is_array($set_field))
+foreach($set_field as $key => $value) {
+    $set_fields[]=$value[id];
+}*/
+?><!--自动调用自定义字段-->
+
+{loop $archive $key $value}
+<?php
+/*if(setting::$var['archive'][$name]['typeid'] && !in_array(setting::$var['archive'][$name]['typeid'],$set_fields)){
+  unset($field[$name]);
+  continue;
+}*/
+?>
+<?php if(!preg_match('/^my/',$key) || !$value) continue; ?>
+<?php
+$category = category::getInstance();
+$sonids = $category->sons(setting::$var['archive'][$key]['catid']);
+if(setting::$var['archive'][$key]['catid'] != $archive['catid'] && !in_array($archive['catid'],$sonids) && (setting::$var['archive'][$key]['catid'])){
+	unset($field[$key]);
+    continue;
+}
+?>
+<p> {=setting::$var['archive'][$key]['cname']}: {$value}</p>
+{/loop}
+<div class="blank20"></div>
+
+
+<?php if(archive_attachment($archive['aid'],'id')) { ?>
+<!-- 附件 -->
+<p>
+{lang(attachment)}：{attachment_js($archive['aid'])}
+</p>
+<?php } ?>
+<div class="blank30"></div>
+
+<?php if(hasflash()) { ?>
+        <div style="color:red;font-size:16px;"><?php echo showflash(); ?></div><?php } ?>
+
+<!-- 投票 -->
+        {vote_js($archive[aid])}
+
+
+<script language="JavaScript">
+function shutwin(){
+window.close();
+return;}
+</script>
+{if get('lang_type')=='cn'}
+<div class="blank30"></div>
+<!-- JiaThis Button BEGIN -->
+<div id="ckepop" style="margin-left:10px;">
+<a href="http://www.jiathis.com/share/" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">分享到：</a>
+<a class="jiathis_button_tools_1"></a>
+<a class="jiathis_button_tools_2"></a>
+<a class="jiathis_button_tools_3"></a>
+<a class="jiathis_button_tools_4"></a>
+</div>
+<script type="text/javascript" src="http://v2.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+{/if}
+<div class="blank30"></div>
+<div id="tool">
+<ul>
+<li><a href="javascript:window.print()" class="print">{lang(printcontent)}</a></li>
+<li><a href="javascript:shutwin()" class="close">{lang(shutwin)}</a></li>
+<li style="width:90px; padding-left:5px;"><a href='<?php echo url('comment/list/aid/'.$archive['aid']); ?>' class="t_4">{lang(comment)}</a></li>
+<li style="width:60px; padding-left:5px;">{lang(strgrades)}：</li>
+<li style="width:100px; padding-left:5px;">{$archive[strgrade]}</li>
+{if get('lang_type')=='cn'}
+<li><a href="javascript:void((function(s,d,e,r,l,p,t,z,c) {var%20f='http://v.t.sina.com.cn/share/share.php?appkey=4174743220',u=z||d.location,p=['&url=',e(u),'& title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'& content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a() {if(!window.open([f,p].join(''),'mb', ['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width- 440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');}; if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();}) (screen,document,encodeURIComponent,'','','','{$archive[title]}','',''));" class="sinaicon">分享到微博</a></li>
+{/if}
+{if $archive[attr2]}
+<li><a title="{lang(makeorders)}" target="_blank" href="{url('archive/orders/aid/'.$archive[aid],true)}" class="orders">{lang(makeorders)}</a></li>
+{/if}
+</ul>
+</div>
+<div class="blank30"></div>
+<div id="page">
+{if $archive['p']['aid']}
+<strong>{lang(archivep)}：</strong><a href="{$archive['p']['url']}">{$archive['p']['title']}</a>
+{else}
+<strong>{lang(archivep)}：</strong>{lang(nopage)}	
+{/if}
+<div class="clear"></div>
+{if $archive['n']['aid']}
+ <strong>{lang(archiven)}：</strong><a href="{$archive['n']['url']}">{$archive['n']['title']}</a>
+{else}
+<strong>{lang(archiven)}：</strong>{lang(nopage)}	
+{/if}
+</div>
+
+<!-- 评论框开始 -->
+<div class="blank30"></div>
+<div class="line_2"></div>
+<form action="<?php echo url('comment/add'); ?>" method="POST" name="comment_form" id="comment">
+<div class="comm">
+<a href='<?php echo url('comment/list/aid/'.$archive['aid']); ?>' style="float:right;padding-right:20px;font-size:12px;">{lang('have')}<span class="commentnumber">{comment::countcomment($archive['aid'])}</span>{lang(bitofcommenters)}&nbsp;&nbsp;<strong>{lang('clicktoview')}</strong></a><strong>{lang('iwanttocomment')}:</strong></div>
+<div class="blank5"></div>
+<textarea name="content" id="textarea"></textarea>
+<div style="margin-top:10px;line-height:34px;"><input type="hidden" name="aid" value="{$aid}"/>
+{lang('username')}：<input type="text" name="username" class="key" value="<?php echo get('username');?>"/> &nbsp;&nbsp;{lang('verifycode')}：{verify()} &nbsp;<input type="text" name="verify" value="" size="4" />&nbsp;<input name="submit" class="input" value="{lang('submit')}" type="submit"/>
+</div>
+</form>
+<!-- 评论框结束 -->
+
+<!-- 评论列表开始 -->
+{comment_js($aid)}
+<!-- 评论列表结束 -->
+
+<!-- 自定义表单开始 -->
+{if $archive['showform']}
+{template 'myform/nrform.html'}
+{/if}
+<!-- 自定义表单结束 -->
+
+<div class="blank30"></div>
+<a title="{lang(gotop)}" href="#" class="clear floatright"><img alt="{lang(gotop)}" src="{$skin_url}/images/gotop.gif"></a>
+<div class="blank30"></div>
+<div class="clear"></div>
+</div>
+</div>
+<!-- 右侧结束 -->
+
+<div class="c_bottom"></div>
+<div class="clear"></div>
+</div>
+<!-- 中部结束 -->
+
+<script defer>
+var obj = document.getElementById("content").getElementsByTagName("img");
+for(i=0;i<obj.length;i++){
+	if(obj[i].width>620){
+		obj[i].width = 620;
+	}
+}
+</script>
+{template 'footer.html'}

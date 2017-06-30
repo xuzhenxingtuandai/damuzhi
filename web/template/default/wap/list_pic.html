@@ -1,0 +1,47 @@
+{template 'wap/header.html'}
+<div class="blank10"></div>
+<div class="title">{if $category[$catid][parentid]}<a href="{category::url($category[$catid][parentid])}">{$category[$category[$catid][parentid]][catname]}</a> &gt; {/if}<a href="{category::url($catid)}">{$category[$catid][catname]}</a></div>
+
+{if $subids}
+<div id="search">
+{loop $subids $id}
+<a href="{category::url($id)}">{$category[$id][catname]}</a> |
+{/loop}
+</div>
+<div class="search_b"></div>
+{/if}
+
+
+<div class="clear box">
+<div class="p10">
+
+<ul id="list-view">
+<li>
+{loop $archives $i $archive}
+{if $i%2==0  &&   $i> 1}
+<div class="blank10 clear"></div>
+</li>
+<li>
+{else}{/if}
+
+<div class="list-view"><div class="img-wrap"><a title="{$archive['stitle']}" target="_blank" href="{$archive[url]}"><img alt="{$archive['stitle']}" src="{$archive['thumb']}" onerror='this.src="{config::get('onerror_pic')}"' /></a></div>
+<h5><a title="{$archive['stitle']}" target="_blank" href="{$archive[url]}">{$archive['title']}</a></h5>{if $archive['attr2']}{if $archive['attr2']==$archive['oldprice']}{lang(price)}：<span>{$archive['attr2']}</span>{lang(unit)}{else}{lang(list_price)}：<span>{$archive['oldprice']}</span>{lang(unit)} {lang(discount)}：<span>{$archive['attr2']}</span>{lang(unit)}{/if}{/if}
+</div>
+{/loop}
+</ul>
+
+
+<div class="blank10"></div>
+<div class="blank10"></div>
+{if isset($pages)}
+{category_pagination($catid)}
+{/if}
+
+
+<div class="blank10"></div>
+<div class="blank10"></div>
+<a href="javascript:history.back(-1)">{lang(backuppage)}</a>	|	<a href="{$base_url}/wap/">{lang(backhome)}</a>
+<div class="blank10"></div>
+</div>
+</div>
+{template 'wap/footer.html'}

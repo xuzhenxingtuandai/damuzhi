@@ -1,0 +1,12 @@
+
+
+<div class="list">
+ <div class="list_title"><h2 style="font-size:15px; padding-left:20px; text-align:left;">联系方式</h2></div>
+ <div class="list_con" style="padding-left:10px; padding-right:10px; padding-top:10px; padding-bottom:10px;">	
+<img src="{$skin_path}/images/contactpic1.jpg">
+    {loop plugins::categoryinfo(20) $c}      
+    {$c[categorycontent]}
+    {/loop}
+ </div>
+ <div class="list_bottom"></div>
+</div>

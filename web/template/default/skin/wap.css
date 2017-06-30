@@ -1,0 +1,263 @@
+@charset "utf-8";
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,
+dl, dt, dd, ul, ol, li,
+pre,
+form, fieldset, legend, button, input, textarea, table, tr, td
+{margin:0px;padding:0px;}
+fieldset, img {border:0;}
+li {list-style:none;}
+
+address, cite, dfn, em, var { font-style: normal; } /* 将斜体扶正 */
+code, kbd,samp { font-family: courier new, courier, monospace; }
+
+ins {text-decoration:none;}
+del {text-decoration:line-through;}
+h1, h2, h3, h4, h5, h6 {}
+h1 {font-size: 2em;}
+h2 {font-size: 1.7em;}
+h3 {font-size: 1.5em;}
+h4 {font-size: 1.38em;}
+h5 {font-size: 1.2em;}
+h6 {font-size: 1.1em;font-style: italic;}
+
+address,cite,dfn,em,var{font-style:normal;}
+caption,td {font-weight: normal;}
+cite, blackquote, em, i {font-style: italic;}
+strong, b {	font-weight: bold;}
+pre, code {font-family: monospace;font-size: 1.1em;}
+abbr[title],acronym[title]{border-bottom:1px dotted;cursor:help;}
+table {	border-collapse:collapse; /* 边框合并属性 */border-spacing:0;}
+q:before, q:after, blockquote:before, blockquote:after {content:"";content:none}
+blockquote, q {	quotes:none;}
+
+legend { color: #000; } 
+button,input,select,textarea,checkbox,radio 
+{vertical-align:middle;}
+
+.clear {clear:both;}
+.blank10 {clear:both;height:10px;overflow:hidden;}
+
+a{ text-decoration: none; color:#333;}
+a:hover{ text-decoration: underline; }
+
+body {line-height:200%;background:white url(wap/bg.gif) left top repeat-x;font:1em/1.5em Verdana, Geneva, sans-serif; color:#333;}
+
+img {border:none;}
+
+a {margin: 0px;padding:0px;border:0px;}
+a:link {color:#333;text-decoration:none;}
+a:visited{color:#666;text-decoration: none;}
+a:hover{color:#D9271F;text-decoration: underline;}
+
+.box {width:300px;/*background:red;*/}
+
+#header {height:100px;background:url(wap/top_bg.jpg) left top no-repeat;}
+#header .box {padding:30px 0 0 0;}
+.logo span {display:none;}
+#menu {background:#172B6A;padding:10px 0;border-bottom:2px solid #666; }
+#menu a {display:block; float:left; color:white;padding:2px 0px 6px 9px;font-weight:bold;}
+#footer {line-height:26px; padding:20px 20px 80px 20px;  background:#194586 url(wap/footer_bg.gif) left top repeat-x;color:white;}
+#footer a {color:white;}
+
+#search {padding:5px;background:#E2E2E2; font-size:12px;}
+.search_b {height:7px;background:url(wap/search_bg.gif) 10px top no-repeat; }
+#search .s_text {width:80px;height:16px;line-height:16px; font-size:12px;}
+#search .s_btn,#catid {font-size:12px;}
+
+.top_news {text-align:center;}
+.top_news h3 a {color:#333;font-size:14px;}
+.top_news h3 {padding:10px;}
+
+.title {
+  height:26px;
+  line-height:26px;
+  padding-left:10px;
+  background:#25488C url(wap/title_bg.gif) left bottom repeat-x;
+  color:white;
+}
+.title span {float:right;padding-right:10px;}
+.title a {color:white;font-weight:bold;}
+.title span a {font-weight:normal;}
+
+.line {height:1px;background:url(wap/point.gif) left top repeat-x;}
+
+.text_list li {line-height:24px;padding-left:12px;background:url(wap/icon_02.gif) left 8px no-repeat;}
+.news_list li {line-height:28px;padding-left:30px;background:url(wap/icon_01.gif) left 5px no-repeat;border-bottom:1px dotted #ccc;}
+
+.p10 {padding:10px;}
+.p20 {padding:20px;}
+
+
+.tel {height:26px;line-height:26px; padding:0px 0px 0px 20px; background:url(wap/tel.png) left center no-repeat;}
+
+.email {height:26px;line-height:26px; padding:0px 0px 0px 20px; background:url(wap/email.png) left center no-repeat;}
+.address {height:26px;line-height:26px; padding:0px 0px 0px 20px; background:url(wap/address.png) left center no-repeat;}
+
+
+
+
+.list-view{
+float:left; 
+width:48%; 
+text-align:center;  
+margin:0 0px 15px; 
+padding:0px  1%; 
+vertical-align:100%;
+} 	
+
+.img-wrap{
+	margin:0 auto;   
+	width:126px;
+	min-height:150px;
+	overflow:hidden; 
+	/*非IE的主流浏览器识别的垂直居中的方法*/
+	vertical-align:middle;
+	/*设置水平居中*/                
+	display: table-cell; 
+	text-align:center;							
+}
+.img-wrap a {display:block;height:150px;overflow:hidden;}
+.img-wrap img {
+	display:block;
+	width:90%;  
+	vertical-align:middle;
+	padding:5%;
+	/*非IE的主流浏览器识别的垂直居中的方法*/
+	vertical-align:middle;
+	/*设置水平居中*/
+	text-align:center;
+  }
+#list-view h5 {margin:10px 0px;}
+#list-view h5 a {
+  clear:both;
+  width:142px;
+  overflow:hidden;
+  height:18px;
+  line-height:18px;
+  font-size:12px;
+   text-align:center;
+  font-weight:normal;
+}
+#list-view span {color:red;}
+#list-view h5 p {height:18px;
+  line-height:18px;}
+.back,.btn {
+  display:block;
+  clear:both;
+  width:72px;
+  height:21px;
+  line-height:20px;
+  margin:15px 0px;
+  padding-left:10px;
+  background:url(images/back.gif) left top no-repeat;
+  text-align:center;
+  color:white;
+  font-size:12px;
+  text-decoration: none;
+  border:none;
+}
+
+/************* 分页 */
+
+.pages {
+  clear:both;
+
+}
+
+.pages strong {
+  color:#555;
+  display:block;
+  float:left;
+  height:18px;
+  line-height:18px;
+  float:left;
+  padding:0px 8px;
+  background:#F5F5F5;
+  border:1px solid #ccc;
+  margin: 0px 3px 0px 0px;
+}
+.pages a {
+  display:block;
+  float:left;
+  height:18px;
+  line-height:18px;
+  float:left;
+  padding:0px 8px;
+  border:1px solid #CCC;
+  text-decoration:none;
+  margin: 0px 3px 0px 0px;
+  color:#555;
+}
+
+.pages span {
+  float:right;
+}
+
+.mailbtn {
+  height:20px;
+  line-height:20px;
+  border:none;
+  background:#194586;
+  color:white;
+}
+
+#box_footerBody{width: 100%; height: 50px; position:fixed; bottom: 0px; text-align: center; border-top: none;}
+.footer_body{ min-width:320px; }
+.footer_ul{ display:block; background:#172B6A; width:100%; height:49px;}
+.footer_ul li{ display:inline; float:left; width:20%; height:49px;}
+.footer_ul li a { display:block; height:47px; padding-top:5px; text-align:center;color:#FFF; font-size:12px;border-right:1px solid #194586;height:46px;}
+.footer_ul li a.border_none{ border-right:none;}
+.footer_ul li a:hover{ background:#194586; }
+.footer_ul li a .icon{ display:block; width:30px; height:20px; margin:0 auto; background:url(wap/icon.png) no-repeat;}
+.footer_ul li a .text{ display:block; height:16px; line-height:16px; text-align:center;}
+.footer_ul li a span.f_tel{ background-position:0 0;}
+.footer_ul li a span.mail{ background-position:-30px 0;}
+.footer_ul li a span.map{ background-position:-60px 0;}
+.footer_ul li a span.share{ background-position:-90px 0;}
+.footer_ul li a span.massage{ background-position:-120px 0;}
+
+
+.mail_body02{ position:relative; padding-bottom:30px;}
+.mail_body02 ul li{margin: 5px 0; padding-left: 10px; }
+.mail_body02 .email_g, .mail_body02 .mail_title02{ padding-right:120px;}
+.z3g-input {width: 100%; height: 33px; padding: 0px 10px; line-height: normal; color:#888; font-size:10px; border:none;}
+.mail_body02 ul li.address .z3g-input {width: auto; overflow: hidden; line-height: 35px; border: none; background: none; padding-left: 0px;}
+.z3g-textarea {width: 100%; height: 130px; padding: 10px; line-height: 20px; background-color: rgba(163, 163, 163, 0.1);
+border: 1px solid rgba(163, 163, 163, 0.5); -webkit-appearance: none;
+background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(163, 163, 163, 0.1)), to(rgba(163, 163, 163, 0.1)));}
+.mail_body02 ul li.cont {padding-right: 33px;}
+.mail_body02 ul li.verificationCode {vertical-align: middle;}
+.mail_body02 ul li.verificationCode input {width: 160px; vertical-align: middle;}
+.mail_body02 ul li.verificationCode .verify-pic {height: 35px; vertical-align: middle;}
+.submitBtn {height: 75px; position: absolute; top: 38px; right: 11px; text-align: center;}
+.submitBtn a{ display:block; width: 80px; height: 75px; cursor:pointer; line-height: 75px; padding: 0px; background:#194586; font-size:16px; color:#fff; border:1px solid #194586;}
+#guestemail,#title {border-bottom:1px solid #ccc;}
+
+
+
+
+.share_body02{ padding:10px;}
+.share_tit{ padding:10px 0;}
+.share_body02 ul li{width: 50%; float: left;}
+.share_body02 ul li a{ display:block;}
+.share_body02 ul li a div{margin: 0 2px 1px 0; height: 38px; line-height: 38px; border: 1px solid rgba(163, 163, 163, 0.5); padding: 0 10px;
+background-color: rgba(163, 163, 163, 0.1); vertical-align: top;}
+.share_body02 ul li a .icon{width: 32px; height: 32px; margin: 3px 10px 0 0; background:url(../images/icon_share.png) no-repeat;}
+.share_body02 ul li a span{display: inline-block; vertical-align: top;}
+.share_body02 ul li.sina .icon{ background-position:0 0;}
+.share_body02 ul li.tenxun .icon{ background-position:0 -64px;}
+.share_body02 ul li.qzone .icon{ background-position:0 -32px;}
+.share_body02 ul li.wangyi .icon{ background-position:0 -96px;}
+.share_body02 ul li.souhu .icon{ background-position:0 -128px;}
+.share_body02 ul li.pengyou .icon{ background-position:0 -160px;}
+.share_body02 ul li.renren .icon{ background-position:0 -192px;}
+.share_body02 ul li.kaixin .icon{ background-position:0 -224px;}
+.share_body02 ul li.douban .icon{ background-position:0 -256px;}
+.share_body02 ul li.souhubai .icon{ background-position:0 -288px;}
+.share_body02 ul li.tianya .icon{ background-position:0 -320px;}
+.share_body02 ul li.fanfou .icon{ background-position:0 -352px;}
+.share_body02 ul li.renjian .icon{ background-position:0 -384px;}
+.share_body02 ul li.taojianghu .icon{ background-position:0 -480px;}
+.share_body02 ul li.hexun .icon{ background-position:0 -544px;}
+.share_body02 ul li.diandian .icon{ background-position:0 -576px;}
+.share_body02 ul li.sina_qingbo .icon{ background-position:0 -608px;}

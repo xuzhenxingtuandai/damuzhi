@@ -1,0 +1,48 @@
+{template 'wap/header_a.html'}
+<div class="blank10"></div>
+<div class="title"><a>{lang('send_email')}</a></div>
+
+
+<div class="clear box">
+<div class="p10">
+
+<div style="text-align:center;color:red;"><?php if(hasflash()) { ?>
+<?php echo showflash(); ?>
+<?php } ?>
+</div>
+
+
+<form method="post" action="?case=guestbook&act=emailpost&t=wap" name="form1">
+        
+		<div class="mail_body02">
+        	<ul>
+                <li class="address_g">
+                    <div class="z3g-input"><strong>{lang(guestemail)}: </strong>{get(smtp_user_add)}</div>
+                </li>
+                <li class="email_g">
+					<input class="z3g-input" type="text" name="guestemail" id="guestemail" value="" placeholder="输入您的邮箱">
+                </li>										
+                <li class="mail_title02">
+					<input class="z3g-input" type="text" name="title" id="title" value="" placeholder="输入邮件标题">
+                </li>					
+				<li class="blank10"></li>
+                <li class="cont">
+                    <textarea class="z3g-textarea" name="content" placeholder="输入您的邮件正文"></textarea>
+                </li>
+               <!-- <li class="verificationCode">			
+					<input class="z3g-input" type="text" id="verify"  name="verify"  placeholder="输入右侧验证码"> 
+					{verify()} 
+                </li>-->
+            </ul>
+            <div class="submitBtn"><a href="#" onclick="document.form1.submit()">发送</a></div>
+        </div>
+
+		</form>
+
+<div class="blank10"></div>
+<div class="blank10"></div>
+<a href="javascript:history.back(-1)">{lang(backuppage)}</a>	|	<a href="{$base_url}/wap/">{lang(backhome)}</a>
+<div class="blank10"></div>
+</div>
+</div>
+{template 'wap/footer_a.html'}  

@@ -1,0 +1,61 @@
+{template 'user/head.html'}
+<div class="tags">
+
+  <div id="tagstitle">
+	<ul>
+	  <li id="one1" class="hover">推广联盟</li>
+	</ul>
+  </div>
+
+ <div id="tagscontent"> 
+ <div id="con_one_1">
+ 
+  <div class="table_td" style="margin-top:10px;">
+
+
+    <table border="0" cellspacing="1" cellpadding="4" class="list" name="table" id="table" width="100%"> 
+        <thead>
+
+<tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+    <td class="td_left" width="20%">用户名：</td>
+    <td class="td_left">{$data['username']}</td>
+  </tr>
+  
+ <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+    <td class="td_left" width="20%">本期利率：</td>
+    <td class="td_left">{$uniondata['profitmargin']} %</td>
+  </tr>
+  <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+    <td class="td_left" width="20%">可用点数：</td>
+    <td class="td_left">{$data['point']} 点</td>
+  </tr>
+  
+  
+  <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+    <td class="td_left">来访次数：</td>
+    <td class="td_left">{$uniondata['visits']} 次 （<a href="{url('union/visit/manage/union')}">查看来访记录</a>）</td>
+  </tr>
+  <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+    <td class="td_left">注册用户数：</td>
+    <td class="td_left">{$uniondata['registers']} 个（<a href="{url('union/reguser/manage/union')}">查看注册用户</a>）</td>
+  </tr>
+
+
+        </tbody>
+    </table>
+
+
+    <div class="blank10"></div>
+   
+
+             </div></div></div></div>
+      
+ 
+    </div>
+</div>
+    <div class="clear"></div>
+     
+
+</div>
+
+{template 'user/foot.html'}

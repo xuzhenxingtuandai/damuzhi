@@ -1,0 +1,96 @@
+{template 'user/head.html'}
+<script type="text/javascript" src="{$base_url}/common/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="{$base_url}/common/js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="{$base_url}/common/js/ThumbAjaxFileUpload.js"></script>
+<link rel="stylesheet" href="{$base_url}/common/js/jquery/ui/ui.datepicker.css" type="text/css" media="screen" title="core css file" charset="utf-8" />
+<script language="javascript" src="{$base_url}/common/js/jquery/ui/ui.datepicker.js"></script>
+<script language="javascript" src="{$base_url}/common/js/common.js"></script>
+
+<div id="position">
+<a href="javascript:history.back(-1)" ><img src="{$base_url}/images/user/skin/undo.gif" style="float:right;" /></a>{lang(nowposition)}：{lang(edit)}{lang(memeberinfo)}
+</div>
+<div class="padding5">
+</div>
+
+<div class="blank10"></div>
+
+<form method="post" name="form1" action="<?php echo modify("/act/edit/userid/".$data['userid']);?>"  onsubmit="return checkform();">
+
+<table border="0" cellspacing="1" cellpadding="4" class="list" name="table" id="table"> 
+<thead>
+<tr>
+<th align="center" class="left">
+<a href="{url('user/index')}" style="font-weight:normal;">{lang(userinfo)}</a></th>
+<th align="left"><a href="<?php echo url('user/edit/table/user'); ?>" style="color:black;">{lang(editinfo)}</a></th>
+</tr> </thead>
+        <tbody>
+            
+                                            
+            <tr>
+                <td class="left">{lang(username)}</td>
+                <td>{$data['username']}</td>
+            </tr>
+                <td class="left">{lang(nickname)}</td>
+                <td>{form::getform('nickname',$form,$field,$data)}</td>
+            </tr>
+            </tr>
+                <td class="left">{lang(question)}</td>
+                <td>{form::getform('question',$form,$field,$data)}</td>
+            </tr> 
+            </tr>
+                <td class="left">{lang(answer)}</td>
+                <td>{form::getform('answer',$form,$field,$data)}</td>
+            </tr>              
+            <tr>
+                <td class="left">{lang(qq)}</td>
+                <td>{form::getform('qq',$form,$field,$data)}</td>
+            </tr>
+
+                            
+            <tr>
+                <td class="left">E-Mail</td>
+                <td>{form::getform('e_mail',$form,$field,$data)}</td>
+            </tr>
+
+                            
+            <tr>
+                <td class="left">{lang(tel)}</td>
+                <td>{form::getform('tel',$form,$field,$data)}</td>
+            </tr>
+
+			<tr>
+                <td class="left">{lang(address)}</td>
+                <td>{form::getform('address',$form,$field,$data)}</td>
+            </tr>
+
+			<tr>
+                <td class="left">{lang(intro)}</td>
+                <td>{form::getform('intro',$form,$field,$data)}</td>
+            </tr>
+            <tr><th colspan="5">{lang(usermake)}</th></tr>
+            {loop $field $f}
+            <?php
+            $name=$f['name'];
+            if(!preg_match('/^my_/',$name)) {
+            unset($field[$name]);
+            continue;
+            }
+            if(!isset($data[$name])) $data[$name]='';
+            ?>
+            <tr>
+                <td class="left"><?php echo setting::$var['user'][$name]['cname']; ?></td>
+                <td>
+                    <?php echo form::getform($name,$form,$field,$data); ?>
+                </td>
+            </tr>
+            {/loop}
+            
+        </tbody>
+		</table>
+
+<div class="blank20"></div>
+<input type="submit" name="submit" value="{lang(submit)}" class="button"/>
+
+</form>
+
+{template 'user/foot.html'}

@@ -1,0 +1,65 @@
+{template 'header.html'}
+<div id="main">
+  <div class="lr">
+
+
+	   <div class="product">
+		 <div class="product_title">
+           <div style="float:left;"><h2>{$category[$catid][catname]}</h2></div>
+           <div style="float:right;">{template 'position.html'}</div>
+		   <div style="clear:both"></div>
+		 </div>
+		 <div class="product_con2">
+		 
+
+
+
+<!-- 右侧说明 -->
+<div id="pro_baseinfo">
+<ul>
+<li style="text-align:center; font-weight:bold; font-size:16px;">{$archive[title]}</li>
+<li style="text-align:center; padding-top:10px;"><img src="{$archive[thumb]}" /></li>
+</ul>
+
+</div>
+
+<div class="blank30"></div>
+<div class="p_info">介绍：</div>
+<div class="blank30"></div>
+<!-- 内容说明 -->
+
+{$archive[content]}
+
+
+
+<div class="blank30"></div>
+
+
+<!-- 上下页开始 -->
+<div id="page">
+{if $archive['p']['aid']}
+<strong>{lang(archivep)}：</strong><a href="{$archive['p']['url']}">{$archive['p']['title']}</a>
+{else}
+<strong>{lang(archivep)}：</strong>{lang(nopage)}	
+{/if}
+<div class="clear"></div>
+{if $archive['n']['aid']}
+ <strong>{lang(archiven)}：</strong><a href="{$archive['n']['url']}">{$archive['n']['title']}</a>
+{else}
+<strong>{lang(archiven)}：</strong>{lang(nopage)}	
+{/if}
+</div>
+<!-- 上下页结束 -->
+
+
+
+
+
+
+		 
+         </div>
+       </div>
+
+  </div>
+</div>
+{template 'footer.html'}

@@ -1,0 +1,277 @@
+{template 'user/head.html'}
+<script language="javascript" src="{$base_url}/common/js/common.js"></script>
+<script>
+    function checkform() {
+        if(document.form1.catid.value=="0") {
+            alert('{lang(pselectcat)}');
+            document.form1.catid.focus();
+            return false;
+        }
+        if(!document.form1.title.value) {
+            alert('{lang(pinput)}{lang(title)}');
+            document.form1.title.focus();
+            return false;
+        }
+        {loop $field $f}
+<?php
+
+if(!preg_match('/^my_/',$f[name]) || !$f[notnull]) {
+    //unset($field[$f[name]]);
+    continue;
+}
+?>
+        if(!document.form1.{$f[name]}.value){
+            alert("{lang(pinput)}<?php echo setting::$var['archive'][$f['name']]['cname']; ?>");
+            $("#lm7").css("display","block");
+            document.form1.{$f[name]}.focus();
+            return false;
+        }
+        {/loop}
+        return true;
+    }
+</script>
+ <script type="text/javascript"> 
+        $(document).ready(function(){
+            var swfu;
+            var settings = {
+                flash_url : "{$base_url}/common/swfupload/swfupload.swf",
+                upload_url: "{url('tool/uploadimage',false)}",
+                post_params: {"PHPSESSID" : "<?php echo session_id(); ?>"},
+                file_size_limit : "2MB",
+                file_types : "*.jpg;*.gif;*.png;*.bmp",
+                file_types_description : "图片", //All Files
+                file_upload_limit : 100,
+                file_queue_limit : 0,
+                custom_settings : {
+                    progressTarget : "fsUploadProgress",
+                    cancelButtonId : "btnCancel"
+                },
+                debug: false,
+
+                // Button settings
+                //button_image_url: "{$base_url}/common/swfupload/botton.png",
+                button_width: "100",
+                button_height: "22",
+                button_placeholder_id: "spanButtonPlaceHolder",
+                button_text: '<span class="theFont">批量上传图片</span>',
+                button_text_style: ".theFont{font-size:12px;width:100px;height:22px;line-height:22px;font-weight:bold;}",
+                button_text_left_padding: 7,
+                button_text_top_padding: 5,
+				button_disabled : false,
+				button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+                button_cursor: SWFUpload.CURSOR.HAND,   
+
+                // The event handler functions are defined in handlers.js
+                file_queued_handler : fileQueued,
+                file_queue_error_handler : fileQueueError,
+                file_dialog_complete_handler : fileDialogComplete,
+                upload_start_handler : uploadStart,
+                upload_progress_handler : uploadProgress,
+                upload_error_handler : uploadError,
+                upload_success_handler : uploadSuccess,
+                upload_complete_handler : uploadComplete,
+                queue_complete_handler : queueComplete	// Queue plugin event
+            };
+
+            swfu = new SWFUpload(settings);
+        });
+    </script>
+
+<style>
+table {background:url({$skin_path}/l_bg.jpg) right bottom no-repeat;}
+table tr td {height:38px;line-height:38px;font-size:14px;}
+.input {width:170px;height:28px;line-height:28px;padding-left:10px;border:1px solid white;border-bottom:1px solid #CCC;}
+#tdLeft {width:180px;}
+</style>
+    
+   <form method="post" name="form1" action="<?php if(front::$act=='edit') $id="/id/".$data[$primary_key]; else $id=''; echo modify("/act/".front::$act."/manage/".$manage.$id."/guest/1");?>" enctype="multipart/form-data" onsubmit="return checkform();">
+
+    <input type="hidden" name="onlymodify" value=""/>
+    
+    <script type="text/javascript" src="{$base_url}/common/js/jquery-1.2.6.min.js"></script>
+    <script type="text/javascript" src="{$base_url}/common/js/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="{$base_url}/common/js/ThumbAjaxFileUpload.js"></script>
+    <link rel="stylesheet" href="{$base_url}/common/js/jquery/ui/ui.datepicker.css" type="text/css" media="screen" title="core css file" charset="utf-8" />
+    <script language="javascript" src="{$base_url}/common/js/jquery/ui/ui.datepicker.js"></script>
+
+    <script type="text/javascript" src="{$base_url}/common/swfupload/swfupload.js"></script>
+    <script type="text/javascript" src="{$base_url}/common/swfupload/swfupload.queue.js"></script>
+    <script type="text/javascript" src="{$base_url}/common/swfupload/fileprogress.js"></script>
+    <script type="text/javascript" src="{$base_url}/common/swfupload/handlers.js"></script>
+
+   
+
+    <script>
+        $(document).ready(function(){
+            $("#catid").change( function(){
+                get_field($("#catid").val());
+            });
+        });
+        function attachment_delect(id) {
+            $.ajax({
+                url: '{url('tool/deleteattachment',false)}&id='+id,
+                type: 'GET',
+                dataType: 'text',
+                timeout: 1000,
+                error: function(){
+                    //	alert('Error loading XML document');
+                },
+                success: function(data){
+                    document.form1.attachment_id.value=0;
+                    get('attachment_path').innerHTML='';
+                    get('file_info').innerHTML='';
+                }
+            });
+        }
+
+        function get_field(catid) {
+            $.ajax({
+                url: '{url('table/getfield/table/archive/',true)}&catid='+catid,
+                type: 'GET',
+                dataType: 'text',
+                timeout: 1000,
+                error: function(){
+                    alert('Error loading XML document');
+                },
+                success: function(data){
+                    $("#lm7").html(data);
+                }
+            });
+        }
+    </script>
+
+    <script language="JavaScript">
+        var number=13; //定义条目数
+
+        function lmYC()
+        {
+            var lbmc;
+            for (i=1;i<=number;i++)
+            {
+                lbmc = eval('lm' + i);
+                lbmc.style.display = 'none';
+            }
+        }
+
+        function ShowFLT(i)
+        {
+            lbmc = eval('lm' + i);
+            if (lbmc.style.display == 'none')
+            {
+                lmYC();
+                lbmc.style.display = '';
+            }
+            else {
+                lbmc.style.display = 'none';
+            }
+        }
+    </script>
+
+    <div class="hid_box">
+        <strong>{lang(addcategory)}</strong>
+        <div class="hbox" style="background:none;">
+            {form::getform('catid',$form,$field,$data)}
+        </div>
+    </div>
+
+    <div class="hid_box">
+        <strong>{lang(addtype)}</strong>
+        <div class="hbox" style="background:none;">
+            {form::getform('typeid',$form,$field,$data)}
+        </div>
+    </div>
+
+    <div class="hid_box">
+        <strong>{lang(title)}</strong>
+        <div class="hbox" style="background:none;">
+            {form::getform('title',$form,$field,$data)}
+        </div>
+    </div>
+
+
+    <div class="hid_box">
+        <strong>{lang(content)}</strong>
+        <div class="hbox" style="background:none;">
+            <div style="width:700px;">
+                {form::getform('content',$form,$field,$data)}
+            </div>
+            <div style="width: 680px;margin-top: 10px;">
+                <div class="fieldset flash" id="fsUploadProgress">
+                    <span class="legend"></span>
+                </div>
+                <div id="divStatus"></div>
+                <div>
+                     <span id="spanButtonPlaceHolder"></span>
+                    <input id="btnCancel" type="button" value="取消" disabled="disabled" style="display:none;" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="hid_box">
+        <strong>{lang(tag)}</strong>
+        <div class="hbox" style="background:none;">
+            <div style="width:99%;">
+                {form::getform('tag',$form,$field,$data)}
+            </div>
+        </div>
+    </div>
+    
+    <div class="blank10"></div>
+    
+    <div class="hid_box">
+       <strong>自定义字段</strong>
+       <?php //print_r($field);?>
+       <div class="hbox" style="background:none;">
+          <table style="background:none;">
+          <?php
+          $name = $field['my_test']['name'];          
+          ?> 
+          <tr>
+              <td class="left"><?php echo setting::$var['archive'][$name]['cname']; ?></td>
+              <td>
+                  <?php echo form::getform($name,$form,$field,$data); ?><?php echo setting::$var['archive'][$name]['tips']; ?> 
+              </td>
+          </tr>
+          </table>
+         </div>
+      </div>
+
+
+   
+    <div class="blank10"></div>
+    <div class="blank10"></div>
+    <input type="submit" name="submit" value=" {lang(submit)} " class="button" />
+
+</form>
+
+
+
+</div>
+</div>
+
+<div class="clear"></div>
+</div>
+
+
+<script> 
+function resizeImg(obj)
+{ 
+var obj = document.getElementById(obj); 
+var objContent = obj.innerHTML;
+var imgs = obj.getElementsByTagName('img'); 
+if(imgs==null) return; 
+for(var i=0; i<imgs.length; i++) 
+{ 
+if(imgs[i].width>parseInt(obj.style.width)) 
+{ 
+imgs[i].width = parseInt(obj.style.width);
+} 
+} 
+} 
+window.onload = function() {resizeImg('text');
+} 
+</script>
+
+{template 'user/foot.html'}

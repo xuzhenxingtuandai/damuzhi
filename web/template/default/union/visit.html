@@ -1,0 +1,65 @@
+{template 'user/head.html'}
+<div class="tags">
+
+  <div id="tagstitle">
+	<ul>
+	  <li id="one1" class="hover">推广联盟访问统计</li>
+	</ul>
+  </div>
+
+ <div id="tagscontent"> 
+ <div id="con_one_1">
+ 
+  <div class="table_td" style="margin-top:10px;">
+
+
+<form name="listform" id="listform"  action="<?php echo uri();?>" method="post">
+
+    <table border="0" cellspacing="1" cellpadding="4" class="list" name="table" id="table" width="100%"> 
+        <thead>
+            <tr>
+                <th align="center">来源地址</th>
+                <th align="center">访问IP</th>               
+                <th align="center">访问时间</th>
+                <th align="center">注册用户</th>          
+                <th align="center">注册时间</th>
+            </tr>
+
+        </thead>
+        <tbody>
+         
+      {loop $visitlist $val}
+            <tr class="s_out" onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+
+                <td align="center">{if $val['referer']}{$val['referer']}{else}直接进入{/if}</td>
+                <td align="center">{$val['visitip']}</td>
+                <td align="center">{date('Y-m-d H:i:s',$val['visittime'])}</td>
+                <td align="center">{$val['regusername']}</td>
+                <?php $val['regtime'] = $val['regtime'] ? date('Y-m-d H:i:s', $val['regtime']) : '';?>
+                <td align="center">{$val['regtime']}</td>
+            </tr>
+        {/loop}
+
+        </tbody>
+    </table>
+
+
+    <div class="blank10"></div>
+   
+
+</form>
+
+
+<div class="page"><?php echo pagination::html($record_count); ?></div>
+
+
+</div></div></div></div>
+      
+    </div>
+</div>
+    <div class="clear"></div>
+     
+
+</div>
+
+{template 'user/foot.html'}

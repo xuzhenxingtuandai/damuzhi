@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>{get('fullname')} - {lang(register)} - Powered by CmsEasy</title>
+<meta name="keywords" content="{if $archive[keyword]}{$archive[keyword]}{else}{if $type[keyword]}{$type[keyword]}{elseif $category[$catid][keyword]}{$category[$catid][keyword]}{else}{get('site_keyword')}{/if}{/if}" />
+<meta name="description" content="{if $archive[description]}{$archive[description]}{else}{if $type[description]}{$type[description]}{elseif $category[$catid][description]}{$category[$catid][description]}{else}{get('site_description')}{/if}{/if}" />
+<meta name="author" content="CmsEasy Team" />
+<link rel="icon" href="{$base_url}/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="{$base_url}/favicon.ico" type="image/x-icon" />
+<link href="{$skin_path}/reset.css" rel="stylesheet" type="text/css" />
+<link href="{$skin_path}/style.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript">
+<!-- 
+function ResumeError()  
+{ 
+    return true; 
+} 
+window.onerror = ResumeError; 
+function check()
+{
+if(document.search.keyword.value.length==0){
+     alert("{lang(pleaceinputtext)}");
+     document.search.keyword.focus();
+     return false;
+    }
+
+	}
+// --> 
+</script>
+</head>
+<body>
+<div id="main">
+		<div id="head">
+		<div id="topmenu">
+		<div id="search">
+<form name='search' action="<?php echo url('archive/search');?>" onsubmit="search_check();" method="post">
+<input  id="search_text" name="keyword" type="text" align="absmiple" />
+<input type="submit" id="search_btn" align="absmiple" name='submit' value=" {lang(search)} " />
+</form>
+</div>
+		
+		<div id="nav">
+<a title="{lang(homepage)}" href="{$base_url}/" class="home">{lang(homepage)}</a>
+{loop categories_nav() $t}
+<a title="{$t[catname]}" href="{$t[url]}"{if isset($topid) && $topid==$t[catid]} class="on"{/if}>{$t[catname]}</a>
+{/loop}
+</div>
+		</div>
+		
+		<div id="logo"><a href="{$base_url}/" title="{get(sitename)}"><img src="{$base_url}/{get(site_logo)}" width="{get(logo_width)}" alt="{get(sitename)}" /></a></div>
+		</div>
+
+<div id="banner">
+<script type="text/javascript">
+switch({get('slide_number')}){/*幻灯片数量控制*/
+	case 1:
+	var files='{$base_url}/{get(slide_pic1)}';/*广告图片*/
+    var links='{get(slide_pic1_url)}';/*图片上的链接,注意链接中的&要用%26替换*/
+    var texts='{get(slide_pic1_title)}';/*图片标题*/
+	break
+	case 2:
+	var files='{$base_url}/{get(slide_pic1)}|{$base_url}/{get(slide_pic2)}';/*广告图片*/
+var links='{get(slide_pic1_url)}|{get(slide_pic2_url)}';/*图片上的链接,注意链接中的&要用%26替换*/
+var texts='{get(slide_pic1_title)}|{get(slide_pic2_title)}';/*图片标题*/
+	break
+	case 3:
+	var files='{$base_url}/{get(slide_pic1)}|{$base_url}/{get(slide_pic2)}|{$base_url}/{get(slide_pic3)}';/*广告图片*/
+var links='{get(slide_pic1_url)}|{get(slide_pic2_url)}|{get(slide_pic3_url)}';/*图片上的链接,注意链接中的&要用%26替换*/
+var texts='{get(slide_pic1_title)}|{get(slide_pic2_title)}|{get(slide_pic3_title)}';/*图片标题*/
+    case 4:
+	var files='{$base_url}/{get(slide_pic1)}|{$base_url}/{get(slide_pic2)}|{$base_url}/{get(slide_pic3)}|{$base_url}/{get(slide_pic4)}';/*广告图片*/
+var links='{get(slide_pic1_url)}|{get(slide_pic2_url)}|{get(slide_pic3_url)}|{get(slide_pic4_url)}';/*图片上的链接,注意链接中的&要用%26替换*/
+var texts='{get(slide_pic1_title)}|{get(slide_pic2_title)}|{get(slide_pic3_title)}|{get(slide_pic4_title)}';/*图片标题*/
+   default:
+   var files='{$base_url}/{get(slide_pic1)}|{$base_url}/{get(slide_pic2)}|{$base_url}/{get(slide_pic3)}|{$base_url}/{get(slide_pic4)}|{$base_url}/{get(slide_pic5)}';/*广告图片*/
+var links='{get(slide_pic1_url)}|{get(slide_pic2_url)}|{get(slide_pic3_url)}|{get(slide_pic4_url)}|{get(slide_pic5_url)}';/*图片上的链接,注意链接中的&要用%26替换*/
+var texts='{get(slide_pic1_title)}|{get(slide_pic2_title)}|{get(slide_pic3_title)}|{get(slide_pic4_title)}|{get(slide_pic5_title)}';/*图片标题*/
+}
+
+var swf_width={get('slide_width')};/*修改flash宽，图片广告需要适应此宽度*/
+var swf_height={get('slide_height')};/*修改flash高，图片广告需要适应此高度*/
+document.write('<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="'+ swf_width +'" height="'+ swf_height +'">');
+document.write('<param name="movie" value="{$base_url}/images/slide/focus.swf"><param name="quality" value="high">');
+document.write('<param name="menu" value="false"><param name=wmode value="opaque">');
+document.write('<param name="FlashVars" value="bcastr_file='+files+'&bcastr_link='+links+'&bcastr_title='+texts+'">');
+document.write('<embed src="{$base_url}/images/slide/focus.swf" wmode="opaque" FlashVars="bcastr_file='+files+'&bcastr_link='+links+'&bcastr_title='+texts+'& menu="false" quality="high" width="'+ swf_width +'" height="'+ swf_height +'" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />'); document.write('</object>'); 
+</script>
+</div>
+
+<div id="c">
+<div id="position">
+<span><a title="{get('sitename')}" href="{$base_url}/">{get('sitename')}</a><a title="{lang(membercenter)}" href="{$base_url}/index.php?case=user&act=login">{lang(membercenter)}</a></span><strong>{lang(nowposition)}</strong>
+</div>
+
+<div id="right">
+<h1 id="title">{$category[$catid][catname]}</h1>
+<div id="text">
+
+ <script type="text/javascript" LANGUAGE="javascript">
+            <!--
+
+            function check()
+            {
+                if(document.loginform.username.value.length==0){
+                    alert("请输入用户名!");
+                    document.loginform.username.focus();
+                    return false;
+                }
+
+                if(document.loginform.password.value.length==0){
+                    alert("请设置密码!");
+                    document.loginform.password.focus();
+                    return false;
+                }
+
+                if(document.loginform.password2.value.length==0){
+                    alert("请输入确认密码!");
+                    document.loginform.password2.focus();
+                    return false;
+                }
+
+                if(document.loginform.aquestion.value.length==0){
+                    alert("请设置安全问题!");
+                    document.loginform.aquestion.focus();
+                    return false;
+                }
+
+                if(document.loginform.question.value.length==0){
+                    alert("请设置安全问题回答!");
+                    document.loginform.question.focus();
+                    return false;
+                }
+
+                if(document.loginform.answer.value.length==0){
+                    alert("请输入自定义安全答案!");
+                    document.loginform.answer.focus();
+                    return false;
+                }
+                if(document.loginform.verify.value.length==0){
+                    alert("请输入{lang(verifycode)}!");
+                    document.loginform.verify.focus();
+                    return false;
+                }
+
+
+            }
+
+
+            function set_question(value)
+            {
+                document.getElementById("question").value=value;
+                document.getElementById("question").focus();
+            }
+            //-->
+        </script>
+
+<style>
+table {background:url({$skin_path}/re_bg.jpg) right bottom no-repeat;}
+table tr td {height:38px;line-height:38px;font-size:14px;}
+.input {width:170px;height:28px;line-height:28px;padding-left:10px;border:1px solid white;border-bottom:1px solid #CCC;}
+#tdLeft {width:180px;}
+</style>
+    
+            <form id="login_form"   name="loginform" method="post"  action="<?php echo url('user/register') ?>" onsubmit="return check()">
+              
+								<strong style="font-size:14px;color:red;">{message()}</strong>
+                                    <table width="700" border="0" cellspacing="0" cellpadding="0">
+                                      {if config::get(reg_on)}
+                                        <tr>
+                                            <td nowrap="nowrap" align="right" id="tdLeft">
+                                               {lang(username)}：
+                                            </td>
+                                            <td>
+												<input name="username" type="text" id="username" value="{get('username')}" tabindex="1"  class="input" />
+												</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="height: 30px" align="right">
+                                                {lang(password)}：
+                                            </td>
+                                            <td style="height: 30px">
+                                                <input name="password" type="password" id="password" value="<?php //echo $password;?>" tabindex="2" class="input" />
+                                            </td>
+                                        </tr>   
+                                        <tr>
+                                            <td style="height: 30px" align="right">{lang(againpassword)}：</td>
+                                            <td><input type='password' id="password2"  name="password2" value="<?php //echo $password;?>" tabindex="3" class="input" />
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="height: 30px" align="right">{lang(question)}：</td>
+                                            <td>
+                                                <select name="" style="width:180px;border:1px solid white;border-bottom:1px solid #CCC;" onchange="set_question(this.value);">
+                                                    <option value="">请选择安全问题</option>
+                                                    <option value="我爸爸的出生地">我爸爸的出生地</option>
+                                                    <option value="我妈妈的出生地">我妈妈的出生地</option>
+                                                    <option value="我的小学校名">我的小学校名</option>
+                                                    <option value="我的中学校名">我的中学校名</option>
+                                                    <option value="我最喜欢的运动">我最喜欢的运动</option>
+                                                    <option value="我最喜欢的歌曲">我最喜欢的歌曲</option>
+                                                    <option value="我最喜欢的电影">我最喜欢的电影</option>
+                                                    <option value="我最喜欢的颜色" >我最喜欢的颜色</option>
+                                                    <option value="" >自定义问题</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+
+                                        <tr style="display:none;">
+                                            <td style="height: 30px" align="right"></td>
+                                            <td><input type='text' id="question"  name="question" value="" tabindex="3" class="input" />
+                                            </td>
+                                        </tr>
+
+                                        <td style="height: 30px" align="right">{lang(answer)}：</td>
+                                        <td>
+                                            <input type='text' id="answer"  name="answer" value="" tabindex="3" class="input" /></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="height: 30px" align="right">{lang(e_mail)}：</td>
+                                            <td><input type='text' id="e_mail"  name="e_mail" value="" tabindex="3"  class="input" /></td>
+                                        </tr>
+
+                               
+                                        {loop $field $f}
+                                        <?php
+                                        $name=$f['name'];
+                                        if(!preg_match('/^my_/',$name)) {
+                                        unset($field[$name]);
+                                        continue;
+                                       }
+                                       if(!setting::$var['user'][$name]['showinreg']) {
+                                         continue;
+                                        }
+                                        ?>
+                                        <tr>
+                                            <td style="height: 30px" align="right"><?php echo setting::$var['user'][$name]['cname']; ?>：</td>
+                                            <td width="80%">
+                                                <?php echo form::getform($name,setting::$var['user'],$field,array()); ?>
+                                            </td>
+                                        </tr>
+                                        {/loop}
+
+
+                                      <?php if(config::get('verifycode')){ ?>
+                                        <tr>
+                                            <td style="height: 30px" align="right">
+                                               {lang(verifycode)}：
+                                            </td>
+                                            <td style="height: 30px">
+                                                <input type='text' id="verify"  tabindex="4"  name="verify" class="input" style="width:100px;" />&nbsp;{verify()}
+                                            </td>
+                                        </tr>
+                                        <?php  } ?>
+
+                                        <tr>
+                                            <td style="height: 30px" align="right">
+
+                                            </td>
+                                            <td style="height: 30px" nowrap="nowrap">
+
+                                                <input type="submit" name="submit" value=" {lang(register)} " class="button"   />
+                                                &nbsp;&nbsp;&nbsp;&nbsp;<a href="{url('user/getpass')}">{lang(findpassword)}</a>&nbsp;&nbsp;<a href="<?php echo url('user/login');?>">{lang(login)}</a>
+                                                </td>
+                                        </tr>
+                                        {else}
+                                        <tr style="font-weight:bold;">
+                                            <td style="height: 30px" align="right">{lang(tips)}：</td>
+                                            <td style="color:red;">{lang(sitecloseregister)}</td>
+                                        </tr>
+
+                                        {/if}
+
+
+                                    </table>
+</form>
+<div class="blank30"></div>
+<a title="{lang(gotop)}" href="#" class="clear floatright"><img alt="{lang(gotop)}" src="{$skin_url}/gotop.gif"></a>
+<div class="blank30"></div>
+
+</div>
+</div>
+
+
+<div class="clear"></div>
+</div>
+
+
+<script> 
+function resizeImg(obj)
+{ 
+var obj = document.getElementById(obj); 
+var objContent = obj.innerHTML;
+var imgs = obj.getElementsByTagName('img'); 
+if(imgs==null) return; 
+for(var i=0; i<imgs.length; i++) 
+{ 
+if(imgs[i].width>parseInt(obj.style.width)) 
+{ 
+imgs[i].width = parseInt(obj.style.width);
+} 
+} 
+} 
+window.onload = function() {resizeImg('text');
+} 
+</script>
+<div id="foot">
+<?php $t=position_p($typeid=1);?>
+<a href="{$t.url}" title="{$t['name']}">{$t['name']}</a>	|	
+<?php?>
+<!-- {loop archive(1,0,0,'0,0,0',20,'aid',10,false,0) $i $archive} -->
+<a href="{$archive[url]}" title="{$archive[stitle]}">{$archive[title]}</a>	|	
+<!-- {/loop} --><?php $t=position_p($typeid=5);?>
+<a href="{$t.url}" title="{$t['name']}">{$t['name']}</a>	|	
+<?php?>
+<a href="#">TOP</a><br />
+Copyright © 2010 <a href="{$base_url}/">{get(sitename)}</a>. All Rights Reserved.
+<a href="http://www.miibeian.gov.cn/" target="_blank">{get('site_icp')}</a>
+<!-- 非商业用户请勿删除 -->
+<div class="copyright"><a href="http://www.cmseasy.cn" title="Powered by CmsEasy.cn" target="_blank">Powered by CmsEasy</a>&nbsp;&nbsp;{getcnzzcount()}</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+{template 'header.html'}
+<!-- 面包屑导航开始 -->
+<div class="clear box">
+{template 'position.html'}
+</div><div class="blank5"></div>
+<!-- 面包屑导航结束 -->
+
+<!-- 中部开始 -->
+<div class="clear box c_bg">
+<div class="c_top"></div>
+
+<!-- 左侧开始 -->
+<div class="w_250">
+
+{template 'left.html'}
+
+<!-- 订单查询 -->
+<div class="title mt20 mb20">
+<h3><a>{lang(vieworders)}</a>/<span>Order</span></h3>
+</div>
+
+
+<div class="l_box_top"></div>
+<div class="l_box">
+<div class="order">
+<input size="20" id="oid" class="o_text" name="oid" type="text" align="absmiple"value=" {lang(orderid)}… " onfocus="if(this.value==' {lang(orderid)}… ') {this.value=''}" onblur="if(this.value=='') this.value=' {lang(orderid)}… '" /> 
+<input type="submit" id="search_btn" align="absmiple" name='submit' value=" {lang(look)} " onclick="javascript:window.location.href='<?php echo url('archive/orders');?>&oid='+document.getElementById('oid').value;" class="o_btn" />
+</div>
+</div>
+<div class="l_box_bottom"></div>
+
+<div class="clear"></div>
+</div>
+<!-- 左侧结束 -->
+
+
+<!-- 右侧开始 -->
+<div class="w_700">
+
+<div id="content" class="clear" style="width:650px;overflow:hidden;">
+
+<!-- 栏目标题开始 -->
+<div class="title mt20 mb20">
+<h3><a>{type::getpositionhtml($type['typeid'])}</a>/<span>Type</span></h3>
+</div>
+<div class="line_2"></div><div class="blank20"></div>
+<!-- 栏目标题结束 -->
+
+<!-- 内容缩略图列表 -->
+<ul id="list-view">
+<li>
+{loop $archives $i $archive}
+
+{if $i%4==0  &&   $i> 1}
+<div class="blank10 clear"></div>
+</li>
+<li>
+{else}{/if}
+
+<div class="list-view">
+<div class="img-wrap"><a title="{$archive['stitle']}" target="_blank" href="{$archive['url']}"><img alt="{$archive[stitle]}" src="{$archive[thumb]}" onerror='this.src="{config::get('onerror_pic')}"' /></a></div>
+<h5><a title="{$archive['stitle']}" target="_blank" href="{$archive['url']}">{$archive['title']}</a></h5>{if $archive['attr2']}{if $archive['attr2']==$archive['oldprice']}{lang(price)}：<span>{$archive['attr2']}</span>{lang(unit)}{else}{lang(list_price)}：<span>{$archive['oldprice']}</span>{lang(unit)} {lang(discount)}：<span>{$archive['attr2']}</span>{lang(unit)}{/if}{/if}
+</div>
+
+{/loop}
+<div class="clear"></div>
+</li>
+</ul>
+<!-- 内容缩略图列表结束 -->
+
+<div class="clear"></div>
+<div class="blank30"></div>
+
+<!-- 内容列表分页开始 -->
+{if isset($pages)}
+{type_pagination($typeid)}
+{/if}
+<!-- 内容列表分页结束 -->
+	
+<div class="blank30"></div>
+<a title="{lang(gotop)}" href="#" class="clear floatright"><img alt="{lang(gotop)}" src="{$skin_url}/images/gotop.gif"></a>
+<div class="blank30"></div>
+<div class="clear"></div>
+</div>
+</div>
+<!-- 右侧结束 -->
+
+<div class="c_bottom"></div>
+<div class="clear"></div>
+</div>
+<!-- 中部结束 -->
+{template 'footer.html'}

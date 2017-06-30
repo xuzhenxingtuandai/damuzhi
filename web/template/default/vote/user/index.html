@@ -1,0 +1,84 @@
+{template 'user/head.html'}
+<div id="position">
+<a href="javascript :history.back(-1)" ><img  src="{$base_url}/images/user/skin/undo.gif" style="float:right;" /></a>{lang(nowposition)}：{lang(memeberinfo)}
+</div>
+<div class="padding5">
+<img src="{$base_url}/images/user/skin/wj.gif" style="margin-right:10px;" />{lang(welcometomemberinfopage)}
+</div>
+
+<div class="blank10"></div>
+
+<table border="0" cellspacing="1" cellpadding="4" class="list" name="table" id="table"> <thead>
+<tr>
+<th align="center" class="left">
+<a href="{url('user/index')}" style="color:black;">{lang(userinfo)}</a></th>
+<th align="left"><a href="<?php echo url('user/edit/table/user'); ?>" style="font-weight:normal;">{lang(editinfo)}</a></th>
+</tr> </thead>
+
+<tbody>
+		<tr>
+<td align="center" class="left">ID </td>
+<td>{$user[userid]}</td>
+</tr>
+
+<tr>
+<td align="center" class="left">{lang(username)} </td>
+<td align="left">{$user[username]}</td>
+</tr>
+
+<tr>
+<td align="center" class="left">{lang(question)} </td>
+<td align="left">{$user[question]}</td>
+</tr>
+
+<tr>
+<td align="center" class="left">{lang(answer)}</td>
+<td align="left">{$user[answer]}</td>
+</tr>
+
+<tr>
+<td align="center" class="left">{lang(tel)}</td>
+<td align="left">{$user[tel]}</td>
+</tr>
+
+<tr>
+<td align="center" class="left">{lang(e_mail)}</td>
+<td align="left">{$user[e_mail]}</td>
+</tr>
+
+<tr>
+<td align="center" class="left">{lang(address)}</td>
+<td align="left">{$user[address]}</td>
+</tr>
+
+<tr>
+<td align="center" class="left">{lang(qq)}</td>
+<td align="left">{$user[qq]}</td>
+</tr>
+
+<tr>
+<td align="center" class="left">{lang(intro)} </td>
+<td align="left">{$user[intro]}</td>
+</tr>
+ {loop $field $f}
+            <?php
+            $name=$f['name'];
+            if(!preg_match('/^my_/',$name)) {
+            unset($field[$name]);
+            continue;
+            }
+            if(!isset($data[$name])) $data[$name]='';
+            ?>
+            <tr>
+                <td align="center" class="left"><?php echo setting::$var['user'][$name]['cname']; ?></td>
+                <td align="left">
+                    <?php echo form::getform($name,$form,$field,$data); ?>
+                </td>
+            </tr>
+            {/loop}
+            
+      </tbody>
+    </table>
+</div>
+
+{template 'user/foot.html'}

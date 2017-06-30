@@ -1,0 +1,54 @@
+{template 'user/head.html'}
+<div class="tags">
+
+  <div id="tagstitle">
+	<ul>
+	  <li id="one1" class="hover">推广联盟账号配置</li>
+	</ul>
+  </div>
+
+ <div id="tagscontent"> 
+ <div id="con_one_1">
+ 
+  <div class="table_td" style="margin-top:10px;">
+<form method="post" name="form1" action="<?php echo modify("/act/edit/userid/".$data['userid']);?>"  onsubmit="return checkform();">
+
+<table border="0" cellspacing="1" cellpadding="4" class="list" name="table" id="table" width="100%"> 
+
+        <tbody>
+            
+                                            
+            <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+                <td class="left">{lang(username)}</td>
+                <td>{$data['username']}</td>
+            </tr>
+                <td class="left">真实姓名</td>
+                <td>{$data['nickname']}</td>
+            </tr>
+            <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+                <td class="left">支付账号</td>
+                <td>{form::getform('payaccount',$form,$field,$data)}</td>
+            </tr> 
+            <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+                <td class="left">网站地址</td>
+                <td>{form::getform('website',$form,$field,$data)}</td>
+            </tr>              
+             
+        </tbody>
+		</table>
+
+<div class="blank20"></div>
+<input type="submit" name="submit" value="{lang(submit)}" class="button"/>
+
+</form>
+
+</div></div></div></div>
+      
+    </div>
+</div>
+    <div class="clear"></div>
+     
+
+</div>
+
+{template 'user/foot.html'}

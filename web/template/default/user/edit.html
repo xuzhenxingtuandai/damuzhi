@@ -1,0 +1,107 @@
+{template 'user/head.html'}
+
+<div class="tags">
+
+  <div id="tagstitle">
+	<ul>
+	  <li id="one1" class="hover">{lang(edituserinfo)}</li>
+	</ul>
+  </div>
+
+ <div id="tagscontent"> 
+ <div id="con_one_1">
+ 
+  <div class="table_td" style="margin-top:10px;">
+
+<form method="post" name="form1" action="<?php echo modify("/act/edit/userid/".$data['userid']);?>"  onsubmit="return checkform();">
+
+<table border="0" cellspacing="1" cellpadding="4" class="list" name="table" id="table" width="100%"> 
+
+        <tbody>
+            
+                                            
+            <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+                <td class="left">{lang(username)}</td>
+                <td>{$data['username']}</td>
+            </tr>
+			<tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+                <td class="left">User</td>
+                <td>{form::getform('nickname',$form,$field,$data)}</td>
+            </tr>
+            <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+                <td class="left">{lang(question)}</td>
+                <td>{form::getform('question',$form,$field,$data)}</td>
+            </tr> 
+            <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+                <td class="left">{lang(answer)}</td>
+                <td>{form::getform('answer',$form,$field,$data)}</td>
+            </tr>              
+            <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+                <td class="left">{lang(qq)}</td>
+                <td>{form::getform('qq',$form,$field,$data)}</td>
+            </tr>
+
+                            
+            <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+                <td class="left">E-Mail</td>
+                <td>{form::getform('e_mail',$form,$field,$data)}</td>
+            </tr>
+
+                            
+            <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+                <td class="left">{lang(tel)}</td>
+                <td>{form::getform('tel',$form,$field,$data)}</td>
+            </tr>
+
+			<tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+                <td class="left">{lang(address)}</td>
+                <td>{form::getform('address',$form,$field,$data)}</td>
+            </tr>
+
+			<tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+                <td class="left">{lang(intro)}</td>
+                <td>{form::getform('intro',$form,$field,$data)}</td>
+            </tr>
+ 
+            {loop $field $f}
+            <?php
+            $name=$f['name'];
+            if(!preg_match('/^my_/',$name)) {
+            unset($field[$name]);
+            continue;
+            }
+            if(!isset($data[$name])) $data[$name]='';
+            ?>
+            <tr onmouseover="this.bgColor='#F5F5F5';" onmouseout="this.bgColor='ffffff';" bgcolor="#ffffff">
+                <td class="left"><?php echo setting::$var['user'][$name]['cname']; ?></td>
+                <td>
+                    <?php echo form::getform($name,$form,$field,$data); ?>
+                </td>
+            </tr>
+            {/loop}
+            
+        </tbody>
+		</table>
+        
+        
+       
+
+<div class="blank20"></div>
+<input type="submit" name="submit" value="{lang(submit)}" class="button"/>
+
+</form>
+
+   </div>
+   </div>
+   </div>
+   </div>
+
+
+    </div>
+</div>
+    <div class="clear"></div>
+     
+
+</div>
+
+{template 'user/foot.html'}

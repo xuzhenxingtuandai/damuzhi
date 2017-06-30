@@ -1,0 +1,45 @@
+html {
+  scrollbar-face-color : #F5F5F5;
+  scrollbar-arrow-color :#A0A0A0;
+  
+	width:100%;
+	height:100%;
+	overflow:hidden;
+}
+img  {border: 0px;}
+* {
+    padding:0;
+    margin:0;
+    }
+	a {color:white;text-decoration:none;}
+body {background:#555 url(bg.jpg) left top;text-align:center;}
+
+#login {margin:0px auto;padding:0px auto;font-size:12px;color:white;text-align:left;
+
+}
+
+.input {border:none;}
+
+#footer {
+    display:block;
+	clear:both;
+    position:absolute;
+	bottom:0;
+	width:100%!important;
+	height:44px;
+	line-height:22px;
+	margin:0px auto;
+	padding:0px auto;
+	font-size:12px;
+	color:#9ED26D;
+	text-align:center;
+}
+#footer a {color:#9ED26D;}
+
+#username {width:210px;height:26px;line-height:26px;margin-left:8px; padding-left:30px;font-size:14px;font-weight:bold; background:url(username.gif) no-repeat;}
+#password {clear:both;width:210px;height:26px;line-height:26px;margin:12px 0px 6px 8px; padding-left:30px; font-size:14px;font-weight:bold; background:url(password.gif) no-repeat;}
+#verify {width:80px; height:26px;margin-bottom:12px; font-size:14px;font-weight:bold; }
+
+.ss {clear:both; height:26px; margin:10px 8px 6px;}
+
+.code {margin:10px 9px 0px;vertical-align:middle;}

@@ -1,0 +1,68 @@
+{template 'wap/header.html'}
+<div class="blank10"></div>
+<div class="title"><a>{$archive[title]}</a></div>
+<div class="box">
+<div class="p10">
+{lang(adddate)}：{$archive[adddate]}
+<div class="blank10"></div>
+<div id="content">
+{$archive[content]}
+</div>
+<div class="blank10"></div>
+{if $archive[attr2]}
+<!-- tag -->
+{lang(productprice)}： {$archive[attr2]}
+<div class="blank10"></div>
+{/if}
+
+{if $pages>1}
+<!-- 内页分页 -->
+<div class="blank10"></div><div class="blank10"></div>
+{archive_pagination($archive)}
+<div class="blank10"></div><div class="blank10"></div>
+{/if}
+
+{if $archive[tag]}
+<!-- tag -->
+<div class="blank10"></div>
+{lang(tag)}： {$archive[tag]}
+{/if}
+
+{if $archive[special]}
+<!-- 专题 -->
+<div class="blank10"></div>
+{lang(special)}： {$archive[special]}
+{/if}
+
+
+{if $archive[type]}
+<!-- 分类 -->
+<div class="blank10"></div>
+{lang(type)}： {$archive[type]}
+{/if}
+
+
+{if $archive[area]}
+<!-- 地区 -->
+<div class="blank10"></div>
+{lang(area)}： {$archive[area]}
+{/if}
+
+
+<div class="blank10"></div>
+<div class="blank10"></div>
+<a href="javascript:history.back(-1)">{lang(backuppage)}</a>	|	<a href="{$base_url}/wap/">{lang(backhome)}</a>
+<div class="blank10"></div>
+</div>
+</div>
+
+
+<script defer>
+var obj = document.getElementById("content").getElementsByTagName("img");
+for(i=0;i<obj.length;i++){
+	if(obj[i].width>260){
+		obj[i].width = 260;
+	}
+}
+</script>
+{template 'wap/footer.html'}

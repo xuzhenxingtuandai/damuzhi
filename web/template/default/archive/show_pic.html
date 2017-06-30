@@ -1,0 +1,434 @@
+{template 'header.html'}
+<!-- 面包屑导航开始 -->
+<div class="clear box">
+{template 'position.html'}
+</div><div class="blank5"></div>
+<!-- 面包屑导航结束 -->
+
+<!-- 中部开始 -->
+<div class="clear box c_bg">
+<div class="c_top"></div>
+
+<!-- 左侧开始 -->
+<div class="w_250">
+
+{template 'left.html'}
+
+<div class="clear"></div>
+</div>
+<!-- 左侧结束 -->
+
+
+<!-- 右侧开始 -->
+<div class="w_700">
+
+<!-- 内容标题 -->
+<div class="archive_title"><div class="r_box_top"></div><div class="r_box"><h1>{$archive[title]}</h1></div><div class="r_box_bottom"></div></div>
+
+<div id="content" class="clear">
+
+<!-- 文章属性开始 -->
+<div class="contentinfo">{lang(author)}：<a href="javascript:void(0);" onclick="javascript:document.getElementById('addcontentuser').style.display='block';">{$archive[author]}</a>&nbsp;&nbsp; {lang(adddate)}：{$archive[adddate]}&nbsp;&nbsp; {lang(view)} :{view_js($archive[aid])}{if $archive[attr3]}&nbsp;&nbsp; {lang(source)}：{$archive[attr3]}{/if}</div>
+<!-- 文章属性结束 -->
+
+<style>
+.frame {
+  width:570px;
+  height:440px;
+  overflow:hidden;
+  vertical-align:middle;
+ }
+#big_list li img {padding:10px;background:url({$skin_path}/images/pic_bg.gif) left top no-repeat;border-right:1px solid white; border-bottom:1px solid white;max-width:570px;_width:570px;max-height:420px;_height:420px;vertical-align:middle;
+}
+ .frame .list {
+  list-style:none;
+  padding:0;
+  margin:0;
+  width:10000px;
+ }
+ .frame .list li {
+  width:570px;
+  height:440px;
+  float:left;
+  text-align:center;
+  vertical-align:middle;
+  overflow:hidden;
+ }
+ 
+ .l_frame {
+  width:538px;
+  float:left;
+  overflow:hidden;
+ }
+
+ .l_frame .list {
+  list-style:none;
+  padding:0;
+  margin:0;
+  width:10000px;
+ }
+ .l_frame .list li {
+  float:left;
+  height:100px;
+  cursor:pointer;
+  margin:0px 5px;
+  padding:5px; background:url({$skin_path}/images/pic_bg.gif) left top no-repeat;border-right:1px solid white; border-bottom:1px solid white;
+  overflow:hidden;
+ }
+ .l_frame .list li img {max-height:100px; height:100px;max-height:100px;}
+ .l_frame .list .cur {
+ height:100px;
+ overflow:hidden;
+  border:3px solid #ccc;
+ }
+
+ .slide_nav_left {
+  height:100px;
+  width:16px;
+  background:url({$base_url}/images/goleft.gif) left center no-repeat;
+  display:block;
+  float:left;
+  text-indent:-10000px;
+ }
+
+ .slide_nav_right {
+  height:100px;
+  width:16px;
+  background:url({$base_url}/images/goright.gif) left center no-repeat;
+  display:block;
+  float:left;
+  text-indent:-10000px;
+ }
+
+ #frame {margin:10px 0px 10px 36px;}
+ </style>
+ <!-- 添加css结束 -->
+
+<div class="blank30"></div>
+
+<!-- 幻灯片开始 -->
+
+<?php $pics = array_values(unserialize($archive[pics])); ?>
+{if $pics}
+<div id="frame">
+<!-- 小图片列表开始 -->
+<a id="back" class="slide_nav_left" href="#">left</a>
+<div id="small_frame" class="l_frame">
+<ul id="small_list" class="list">
+{loop $pics $pic}<li><img src="{$pic}" onerror='this.src="{config::get('onerror_pic')}"' /></li>{/loop}
+</ul>
+</div>
+<a id="forward" class="slide_nav_right" href="#">right</a>
+<!-- 小图片列表结束 -->
+
+<div class="blank30"></div>
+
+<!-- 大图片列表开始 -->
+<div id="big_frame" class="frame">
+<ul id="big_list" class="list">
+{loop $pics $pic}<li><img src="{$pic}" onerror='this.src="{config::get('onerror_pic')}"' /></li>{/loop}
+</ul>
+</div>
+<!-- 大图片列表结束 -->
+</div>
+{/if}
+
+<!-- 幻灯片结束 -->
+
+
+<div class="blank30"></div>
+
+<!-- 正文 -->
+{$archive[content]}
+
+<div class="blank30"></div>
+
+
+{if $archive[attr2]}
+<!-- 价格 -->
+<div class="blank10"></div>
+{lang(productprice)}： {$archive[attr2]}
+{/if}
+
+{if $archive[tag]}
+<!-- tag -->
+<div class="blank10"></div>
+{lang(tag)}： {$archive[tag]}
+{/if}
+
+{if $archive[special]}
+<!-- 专题 -->
+<div class="blank10"></div>
+{lang(special)}： {$archive[special]}
+{/if}
+
+
+{if $archive[type]}
+<!-- 分类 -->
+<div class="blank10"></div>
+{lang(type)}： {$archive[type]}
+{/if}
+
+
+{if $archive[area]}
+<!-- 地区 -->
+<div class="blank10"></div>
+{lang(area)}： {$archive[area]}
+{/if}
+
+<div class="blank30"></div>
+{if $pages>1}
+<!-- 内页分页 -->
+<div class="blank10"></div>
+<div class="pages">
+{archive_pagination($archive)}
+</div>
+<div class="blank30"></div>
+{/if}
+
+
+<!--自动调用自定义字段-->
+{$archive['my_fields']}
+<div class="blank20"></div>
+
+
+<?php if(archive_attachment($archive['aid'],'id')) { ?>
+<!-- 附件 -->
+<p>
+{lang(attachment)}：{attachment_js($archive['aid'])}
+</p>
+<?php } ?>
+<div class="blank30"></div>
+
+<?php if(hasflash()) { ?>
+<div style="color:red;font-size:16px;"><?php echo showflash(); ?></div><?php } ?>
+
+<!-- 投票 -->
+{vote_js($archive[aid])}
+
+
+<script language="JavaScript">
+function shutwin(){
+window.close();
+return;}
+</script>
+
+<div class="blank30"></div>
+<div class="line_2"></div>
+<div id="tool">
+<ul>
+<li><a href="javascript:window.print()" class="print">{lang(printcontent)}</a></li>
+<li><a href="javascript:shutwin()" class="close">{lang(shutwin)}</a></li>
+<li style="width:90px; padding-left:5px;"><a href='<?php echo url('comment/list/aid/'.$archive['aid']); ?>' class="t_4">{lang(comment)}</a></li>
+<li style="width:60px; padding-left:5px;">{lang(strgrades)}：</li>
+<li style="width:100px; padding-left:5px;">{$archive[strgrade]}</li>
+{if $archive[attr2]}
+<li><a title="{lang(buy)}" target="_blank" href="{url('archive/orders/aid/'.$archive[aid],true)}">{lang(buy)}</a></li>
+<li><a title="{lang(makeorders)}" href="{url('archive/doorders/aid/'.$archive[aid],true)}">{lang(makeorders)}</a></li>
+{/if}
+</ul>
+</div><div class="line_2"></div>
+<div class="blank30"></div>
+
+<!-- 上下页开始 -->
+<div id="page">
+{if $archive['p']['aid']}
+<strong>{lang(archivep)}：</strong><a href="{$archive['p']['url']}">{$archive['p']['title']}</a>
+{else}
+<strong>{lang(archivep)}：</strong>{lang(nopage)}	
+{/if}
+<div class="clear"></div>
+{if $archive['n']['aid']}
+ <strong>{lang(archiven)}：</strong><a href="{$archive['n']['url']}">{$archive['n']['title']}</a>
+{else}
+<strong>{lang(archiven)}：</strong>{lang(nopage)}	
+{/if}
+</div>
+<!-- 上下页结束 -->
+
+
+<!-- 评论框开始 -->
+{template 'comment/comment.html'}
+<!-- 评论框结束 -->
+
+<!-- 自定义表单开始 -->
+{if $archive['showform']}
+{template 'myform/nrform.html'}
+{/if}
+<!-- 自定义表单结束 -->
+
+<div class="blank30"></div>
+<a title="{lang(gotop)}" href="#" class="clear floatright"><img alt="{lang(gotop)}" src="{$skin_url}/images/gotop.gif"></a>
+<div class="blank30"></div>
+<div class="clear"></div>
+</div>
+</div>
+<!-- 右侧结束 -->
+
+<div class="c_bottom"></div>
+<div class="clear"></div>
+</div>
+<!-- 中部结束 -->
+
+<script type="text/javascript">
+//初始化
+function C_slider(frame,list,Lframe,Llist,forwardEle,backEle,scrollType,LscrollType,acitonType,autoInterval){
+ this.frame = frame;
+ this.list = list;
+ this.Lframe = Lframe;
+ this.Llist = Llist;
+ this.forwardEle = forwardEle;
+ this.backEle = backEle;
+ this.scrollType = scrollType;
+ this.LscrollType = LscrollType;
+ this.acitonType = acitonType;
+ this.autoInterval = autoInterval;
+ this.slideLength = $("#"+this.Llist+" > li").length;//总的slider数量
+ this.currentSlide = 0;
+ this.FrameHeight = $("#"+this.frame).height();
+ this.FrameWidth = $("#"+this.frame).width();
+ this.lFrameHeight = $("#"+this.Lframe).height();
+ this.lFrameWidth = $("#"+this.Lframe).width();
+ this.lListHeight = $("#"+this.Llist+" >li").eq(0).outerHeight(true);
+ this.lListWidth = $("#"+this.Llist+" >li").eq(0).outerWidth(true);
+ var self = this;
+ for(var i = 0; i<this.slideLength; i++) {
+  $("#"+this.Llist+" > li").eq(i).data("index",i);
+  $("#"+this.Llist+" > li").eq(i).bind(this.acitonType,function(){
+   self.go($(this).data("index"));
+  });
+ };
+ //给"上一个"、"下一个"按钮添加动作
+ $("#"+this.forwardEle).bind('click',function(){
+  self.forward();
+  return false;
+ });
+ $("#"+this.backEle).bind('click',function(){
+  self.back();
+  return false;
+ });
+ //定论鼠标划过时，自动轮换的处理
+ $("#"+this.frame+",#"+this.Lframe+",#"+this.forwardEle+",#"+this.backEle).bind('mouseover',function(){
+  clearTimeout(self.autoExt);
+ });
+ $("#"+this.frame+",#"+this.Lframe+",#"+this.forwardEle+",#"+this.backEle).bind('mouseout',function(){
+  clearTimeout(self.autoExt);
+  self.autoExt = setTimeout(function(){
+   self.extInterval();
+  },self.autoInterval);
+ }); 
+ //开始自动轮换
+ this.autoExt = setTimeout(function(){
+  self.extInterval();
+ },this.autoInterval);
+}
+//执行运动
+C_slider.prototype.go = function(index){
+ this.currentSlide = index;
+ if (this.scrollType == "left"){
+  $("#"+this.list).animate({
+   marginLeft: (-index*this.FrameWidth)+"px"
+  }, {duration:600,queue:false});   
+ } else if (this.scrollType == "top"){
+  $("#"+this.list).animate({
+   marginTop: (-index*this.FrameHeight)+"px"
+  }, {duration:600,queue:false});   
+ }
+ $("#"+this.Llist+" > li").removeClass("cur");
+ $("#"+this.Llist+" > li").eq(index).addClass("cur");
+ //对于缩略图的滚动处理
+ if(this.LscrollType == "left"){
+  if(this.slideLength*this.lListWidth > this.lFrameWidth){
+   var spaceWidth = (this.lFrameWidth - this.lListWidth)/2;
+   var hiddenSpace = this.lListWidth*this.currentSlide - spaceWidth;
+   
+   if (hiddenSpace > 0){
+    if(hiddenSpace+this.lFrameWidth <= this.slideLength*this.lListWidth){
+     $("#"+this.Llist).animate({
+      marginLeft: -hiddenSpace+"px"
+     }, {duration:600,queue:false}); 
+    } else {
+     var endHidden = this.slideLength*this.lListWidth - this.lFrameWidth;
+     $("#"+this.Llist).animate({
+      marginLeft: -endHidden+"px"
+     }, {duration:600,queue:false}); 
+    }
+   } else {
+    $("#"+this.Llist).animate({
+     marginLeft: "0px"
+    }, {duration:600,queue:false}); 
+   }
+  }
+ } else if (this.LscrollType == "top"){
+  if(this.slideLength*this.lListHeight > this.lFrameHeight){
+   var spaceHeight = (this.lFrameHeight - this.lListHeight)/2;
+   var hiddenSpace = this.lListHeight*this.currentSlide - spaceHeight;
+   if (hiddenSpace > 0){
+    if(hiddenSpace+this.lFrameHeight <= this.slideLength*this.lListHeight){
+     $("#"+this.Llist).animate({
+      marginTop: -hiddenSpace+"px"
+     }, {duration:600,queue:false}); 
+    } else {
+     var endHidden = this.slideLength*this.lListHeight - this.lFrameHeight;
+     $("#"+this.Llist).animate({
+      marginTop: -endHidden+"px"
+     }, {duration:600,queue:false}); 
+    }
+   } else {
+    $("#"+this.Llist).animate({
+     marginTop: "0px"
+    }, {duration:600,queue:false}); 
+   }
+  }
+ }
+}
+//前进
+C_slider.prototype.forward = function(){
+ if(this.currentSlide<this.slideLength-1){
+  this.currentSlide += 1;
+  this.go(this.currentSlide);
+ }else {
+  this.currentSlide = 0;
+  this.go(0);
+ }
+}
+//后退
+C_slider.prototype.back = function(){
+ if(this.currentSlide>0){
+  this.currentSlide -= 1;
+  this.go(this.currentSlide);
+ }else {
+  this.currentSlide = this.slideLength-1;
+  this.go(this.slideLength-1);
+ }
+}
+//自动执行
+C_slider.prototype.extInterval = function(){
+ if(this.currentSlide<this.slideLength-1){
+  this.currentSlide += 1;
+  this.go(this.currentSlide);
+ }else {
+  this.currentSlide = 0;
+  this.go(0);
+ }
+ var self = this;
+ this.autoExt = setTimeout(function(){
+  self.extInterval();
+ },this.autoInterval);
+}
+//实例化对象 
+var goSlide1 = new C_slider("big_frame","big_list","small_frame","small_list","forward","back","left","left","click",3000);
+var goSlide2 = new C_slider("big_frame2","big_list2","small_frame2","small_list2","forward2","back2","top","left","click",5000);
+var goSlide3 = new C_slider("big_frame3","big_list3","small_frame3","small_list3","forward3","back3","left","top","click",3000);
+var goSlide4 = new C_slider("big_frame4","big_list4","small_frame4","small_list4","forward4","back4","top","top","click",2000);
+</script>
+
+<script defer>
+var obj = document.getElementById("content").getElementsByTagName("img");
+for(i=0;i<obj.length;i++){
+	if(obj[i].width>620){
+		obj[i].width = 620;
+	}
+}
+</script>
+{template 'footer.html'}

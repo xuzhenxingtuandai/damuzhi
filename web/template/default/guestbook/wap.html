@@ -1,0 +1,160 @@
+{template 'wap/header_a.html'}
+<div class="blank10"></div>
+<div class="title"><a>{lang('guestbook')}</a></div>
+
+
+<div class="clear box">
+<div class="p10">
+
+<div style="text-align:center;color:red;"><?php if(hasflash()) { ?>
+<?php echo showflash(); ?>
+<?php } ?>
+</div>
+
+
+<form method="post" action="" name="form1">
+<table width="100%" border="0" align="center" cellpadding="7" cellspacing="0" style="font-size:12px;">
+<tr>
+<td width="80" align="right">{lang('contactname')}：&nbsp;</td>
+<td width="100">{form::input('nickname',get('username'))}
+</td>
+ </tr>
+<tr>
+<td align="right">{lang('guesttel')}：&nbsp;</td>
+<td>{form::input('guesttel',get('guesttel'))}
+</td>
+</tr>
+<tr>
+<td align="right">{lang('guestemail')}：&nbsp;</td>
+<td>{form::input('guestemail',get('guestemail'))}
+</td>
+</tr>
+<tr>
+<td align="right">{lang('guestqq')}：&nbsp;</td>
+<td>{form::input('guestqq',get('guestqq'))}
+</td>
+ </tr>
+{loop $field $f}
+<?php
+ $name=$f['name'];
+ if($name==$primary_key) continue; ?>
+<tr>
+<td align="right">{$name|lang}：&nbsp;</td>
+<td>{form::getform($name,@$form,$field,@$data)} </td>
+</tr>
+<tr>
+<td colspan="2" align="center" style="height:10px;">
+</td>
+</tr>
+ {/loop}
+<tr>
+<td colspan="2" align="center" height="10">&nbsp;
+</td>
+</tr>
+<?php if(config::get('verifycode')){?>     
+<tr>
+<td align="right">{lang('verifycode')}：&nbsp;</td>
+<td><span style="float:left;">{verify()}</span><span style="float:left;padding-left:10px;"><input type='text' id="verify"  name="verify" size="10" style="height:16px;" /></span><span style="color:#FF0000;float:left;">*</span>&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td colspan="2" align="center" height="10">&nbsp;
+</td>
+</tr>
+<?php } ?>
+<tr>
+<td align="right">&nbsp;</td>
+<td><input type="submit" name="submit" value=" {lang('submit')} " class="mailbtn" /></td>
+</tr>
+</table>
+</form>
+
+<div class="blank10"></div>
+<div class="blank10"></div>
+{if $user}
+
+
+<div class="blank10"></div>
+<div class="blank10"></div>
+
+<div class="comm"><strong>{lang('guestlist')}：</strong></div>
+<div class="blank10"></div>
+<div class="blank10"></div>
+
+<dl class="comment_list">
+{loop $data $d}
+<dt><strong>{lang('username')}：{$d[username]}</strong><span>{sdate($d[adddate],'Y-m-d H:i')}</span></dt>
+<dd>{$d[content]}</dd>
+{if $d['reply']}<dd class="admin_reply">
+{lang('adminreply')}：
+{$d['reply']}
+</dd>
+{/if}
+{/loop}
+</dl>
+
+<div class="clear"></div>
+<div class="blank10"></div>
+<div class="blank10"></div>
+<div class="pages">
+<?php echo pagination::html($record_count); ?>
+</div>
+{/if}
+
+<style>
+table tr td {line-height:32px;}
+table input {height:16px;font-size:12px;line-height:16px;}
+table #content {width:205px;height:200px;}
+
+#title {width:126px;}
+/****************评论*/
+#comment {
+  margin-top:20px;
+  font-size:12px;
+}
+
+#comment input {font-size:12px;}
+
+.comm {
+  height:28px;
+  line-height:28px;
+  padding-left:35px;
+  background:url({$skin_path}/wap/comment.gif) 10px 7px no-repeat;
+}
+
+.input {
+  width:72px;
+  height:21px;
+  line-height:21px;
+  padding-left:10px;
+  border:none;
+  font-weight:bold;
+  font-size:12px;
+}
+
+#textarea {
+  width:100%;
+  height:50px;
+  background:#FFF url({$skin_path}/wap/cmslogo.gif) right bottom no-repeat;
+  border-top:1px solid #E0DDDD;
+  border-right:1px solid #E0DDDD;
+  border-bottom:1px solid #E0DDDD;
+  border-left:1px solid #E0DDDD;
+}
+.comment_list {padding:0px 20px;}
+.comment_list dd {font-size:12px;background:url({$skin_path}/wap/point.gif) left bottom repeat-x;}
+.comment_list dt span {float:right;color:#ccc;}
+
+.commentnumber {padding:0px 5px;color:#CC0000;}
+
+.comment_list dt strong {color: #70AADA;}
+
+.comment_list dd.admin_reply  {margin:10px; padding:10px;border:1px dotted #ccc; background:#FFFFEE;}
+</style>
+
+<div class="blank10"></div>
+<div class="blank10"></div>
+<a href="javascript:history.back(-1)">{lang(backuppage)}</a>	|	<a href="{$base_url}/wap/">{lang(backhome)}</a>
+<div class="blank10"></div>
+</div>
+</div>
+{template 'wap/footer_a.html'}

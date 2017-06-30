@@ -1,0 +1,49 @@
+
+
+<div id="footer">
+<div class="box">
+<p>&copy;&nbsp;<a title="{get('sitename')}" href="{$base_url}/wap">{get('sitename')}</a> All Rights Reserved. </p>
+<p class="address">{get(address)}</p>
+<p class="tel">{get(tel)}</p>
+<p class="email"><a href="index.php?case=guestbook&act=index&t=wap">{lang(feedback)}</a></p>
+<p>Powered by <a href="http://www.cmseasy.cn" title="CmsEasy企业网站系统" target="_blank">CmsEasy</a></p>
+</div>
+</div>
+<div class="footer" id="box_footerBody">
+        <div class="footer_body">
+            <ul class="footer_ul">
+                <li>
+                    <a href="tel:{get(site_mobile)}">	
+                        <span class="icon f_tel"></span>
+                        <span class="text">{lang(tel)}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{$base_url}/index.php?case=guestbook&act=email&t=wap">	
+                        <span class="icon mail"></span>
+                        <span class="text">{lang(email)}</span>
+                    </a>																											
+                </li>
+                <li>
+                    <a href="{$base_url}/index.php?case=archive&act=pages&t=wap&p=map">
+                        <span class="icon map"></span>
+                        <span class="text">{lang(map)}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{$base_url}/index.php?case=archive&act=pages&t=wap&p=share">
+                        <span class="icon share"></span>
+                        <span class="text">{lang(share)}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{$base_url}/index.php?case=guestbook&act=index&t=wap" class="border_none">
+                        <span class="icon massage"></span>
+                        <span class="text">{lang(guestbook)}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

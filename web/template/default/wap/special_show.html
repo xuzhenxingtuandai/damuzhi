@@ -1,0 +1,43 @@
+{template 'wap/header.html'}
+<div class="blank10"></div>
+<div class="title">{$special[title]}</div>
+<div class="clear box">
+<div class="p10">
+
+<!-- 专题图片 -->
+<img src="{$special[banner]}" style="float:left;margin:0px 20px 20px 0px;" />
+<!-- 专题介绍 -->
+{$special[description]}
+
+<div class="blank10"></div>
+
+
+<ul class="news_list p10">
+{loop $archives $i $archive}
+<li><a title="{$archive[stitle]}" href="{$archive[url]}">{$archive[title]}</a></li>
+{/loop}
+</ul>
+<div class="blank10"></div>
+<div class="blank10"></div>
+{if isset($pages)}
+{category_pagination($catid)}
+{/if}
+
+
+<div class="blank10"></div>
+<div class="blank10"></div>
+<a href="javascript:history.back(-1)">{lang(backuppage)}</a>	|	<a href="{$base_url}/wap/">{lang(backhome)}</a>
+<div class="blank10"></div>
+</div>
+</div>
+
+
+<script defer>
+var obj = document.getElementById("content").getElementsByTagName("img");
+for(i=0;i<obj.length;i++){
+	if(obj[i].width>260){
+		obj[i].width = 260;
+	}
+}
+</script>
+{template 'wap/footer.html'}

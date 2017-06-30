@@ -1,0 +1,88 @@
+{template 'header.html'}
+<!-- 中部开始 -->
+
+<!-- 面包屑导航开始 -->
+<div class="clear box">
+{template 'position.html'}
+</div><div class="blank5"></div>
+<!-- 面包屑导航结束 -->
+
+<div class="clear box c_bg">
+<div class="c_top"></div>
+
+<!-- 左侧开始 -->
+<div class="w_250">
+
+{template 'left.html'}
+
+<div class="clear"></div>
+</div>
+<!-- 左侧结束 -->
+
+
+<!-- 右侧开始 -->
+<div class="w_700">
+
+<div id="content" class="clear">
+
+
+{loop type($typeid) $t}
+<div class="title mt20 mb20">
+<h3><a title="{$t[typename]}" href="{$t[typeid]}">{$t[typename]}</a>/<span>{$t['htmldir']}</span></h3>
+</div>
+
+<div class="line_2"></div>
+<ul id="list-view">
+<li>
+{loop archive(0,$t[typeid],0,'0,0,0',20,'aid',8,false,0) $i $archive}
+
+{if $i%4==0  &&   $i> 1}
+<div class="clear"></div>
+</li>
+<li>
+{else}{/if}
+
+<div class="list-view">
+<div class="img-wrap"><a title="{$archive['stitle']}" target="_blank" href="{$archive['url']}"><img alt="{$archive[stitle]}" src="{$archive[thumb]}" onerror='this.src="{config::get('onerror_pic')}"' /></a></div>
+<h5><a title="{$archive['stitle']}" target="_blank" href="{$archive['url']}">{$archive['title']}</a></h5>{if $arc['attr2']}{if $arc['attr2']==$arc['oldprice']}{lang(price)}：<span>{$arc['attr2']}</span>{lang(unit)}{else}{lang(list_price)}：<span>{$arc['oldprice']}</span>{lang(unit)} {lang(discount)}：<span>{$arc['attr2']}</span>{lang(unit)}{/if}{/if}
+</div>
+
+{/loop}
+<div class="clear"></div>
+</li>
+</ul>
+<!-- 内容缩略图列表结束 -->
+<div class="blank10"></div>
+{/loop}
+
+<div class="blank30"></div>
+<a title="{lang(gotop)}" href="#" class="clear floatright"><img alt="{lang(gotop)}" src="{$skin_url}/images/gotop.gif"></a>
+<div class="blank30"></div>
+<div class="clear"></div>
+</div>
+</div>
+<!-- 右侧结束 -->
+
+<div class="c_bottom"></div>
+<div class="clear"></div>
+</div>
+<!-- 中部结束 -->
+<script> 
+function resizeImg(obj)
+{ 
+var obj = document.getElementById(obj); 
+var objContent = obj.innerHTML;
+var imgs = obj.getElementsByTagName('img'); 
+if(imgs==null) return; 
+for(var i=0; i<imgs.length; i++) 
+{ 
+if(imgs[i].width>parseInt(obj.style.width)) 
+{ 
+imgs[i].width = parseInt(obj.style.width);
+} 
+} 
+} 
+window.onload = function() {resizeImg('content');
+} 
+</script>
+{template 'footer.html'}

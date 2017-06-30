@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{lang(membercenter)} - <?php echo get('sitename');?> - Powered by CmsEasy</title>
+<link href="{$template_path}/user/skin/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="body">
+<div class="main">
+     <div id="top"><img src="{$template_path}/user/skin/images/logo_user.jpg" alt="{get(sitename)}" /></div>
+     <div id="menu">
+      <div class="menu1">{lang(welcomeyou)}，{$user.username} [<a href="{url('user/logout')}" class="logout">{lang(logout)}</a>]</div>
+       <div class="menu2">  
+        <ul>
+		<li><a title="{lang(backhome)}" href="{$base_url}/">{lang(homepage)}</a></li>
+<li><a href="{url('user/index')}" class="mhover" style="color:#0d2b61">{lang(memberindex)}</a></li>
+<li><a href="?m={$user.userid}">{lang(personal_space)}</a></li>
+<li><a href="{url('archive/orders')}">{lang(shoppingcart)}</a></li>
+<li><a title="{lang(bbs)}" href="{$base_url}/bbs/">{lang(bbs)}</a></li>
+</ul>
+       </div>
+     </div>
+     <div style="background:url({$base_url}/images/user/skin/images/bg_foot.jpg) repeat-x; width:960px; margin:0px auto; height:21px;"></div>
+     
+     <div class="center">
+      <div class="center_left">
+
+  
+              <h2><a href="#">{lang(edituserinfo)}</a></h2>
+              <ul>
+              <li><a href="{url('user/edit/table/user')}">{lang(edituserinfo)}</a></li>
+              <li><a href="{url('user/changepassword')}">{lang(changepassword)}</a></li>
+              </ul>
+              <h2><a href="#">{lang(contentmanage)}</a></h2>
+              <ul>
+              {if chkfpw('add_archive',$user['groupid'])}<li><a href="{url('manage/add/manage/archive')}">{lang(addcontent)}</a></li>{/if}
+              <li><a href="{url('/manage/list/manage/archive/needcheck/1')}">{lang(waitcheckedcontent)}</a></li>
+              <li><a href="{url('/manage/list/manage/archive')}">{lang(alreadycheckedcontent)}</a></li>
+              </ul>
+              <h2><a href="#">{lang(ordersmanage)}</a></h2>
+              <ul>
+              <li><a href="{url('manage/orderslist/manage/orders')}">{lang(vieworders)}</a></li>
+              </ul>
+              <h2><a href="#">{lang(promotion_of_alliances)}</a></h2>
+              <ul>
+              <li><a href="{url('union/stats/manage/union')}">{lang(stats)}</a></li>
+              <li><a href="{url('union/getcode/manage/union')}">{lang(access_code)}</a></li>
+              <li><a href="{url('union/visit/manage/union')}">{lang(access_statistics)}</a></li>
+              <li><a href="{url('union/reguser/manage/union')}">{lang(registered_users)}</a></li>
+              <li><a href="{url('union/pay/manage/union')}">{lang(promotion_of_settlement)}</a></li>
+              <li><a href="{url('union/edit/manage/union')}">{lang(modify)}</a></li>
+              </ul>
+               
+
+        
+       </div>
+        <div class="center_right"> 
+        
+        
+        <?php
+if(hasflash()){
+	$showmessage = showflash();
+	if(strlen($showmessage)>200){ 
+?>
+<div id='message'><span style="color:red;float:left"><?php echo $showmessage; ?></span>
+<span style="color:blue;float:right"><a href="#" onClick="javascript:turnoff('#message');">(×)</a></span></div><div class="blank20"></div>
+<?php
+    }else{
+?>
+<script type="text/javascript">
+art.dialog({
+		id:'messagebox',
+		content:'<?php echo $showmessage; ?>',
+		title:'{lang(prompted)}',
+		time: 2,
+		lock:true
+	});
+</script>
+<?php
+    }
+}
+?>
+

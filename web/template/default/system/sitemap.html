@@ -1,0 +1,75 @@
+{template 'header.html'}
+<!-- 面包屑导航开始 -->
+<div class="clear box">
+{template 'position.html'}
+</div><div class="blank5"></div>
+<!-- 面包屑导航结束 -->
+
+<!-- 中部开始 -->
+<div class="clear box c_bg">
+<div class="c_top"></div>
+
+<!-- 左侧开始 -->
+<div class="w_250">
+{template 'left.html'}
+
+<div class="clear"></div>
+</div>
+<!-- 左侧结束 -->
+
+
+<!-- 右侧开始 -->
+<div class="w_700">
+
+
+<!-- 内容标题 -->
+<div class="archive_title"><div class="r_box_top"></div><div class="r_box"><h1>{lang(sitemap)}</h1></div><div class="r_box_bottom"></div></div>
+<div id="content" class="clear">
+<!-- 正文 -->
+{loop $archive $row}
+<a href="{$row[url]}" target="_blank">{$row[catname]}</a><br />
+{/loop}
+<div class="blank20"></div>
+
+<?php if(hasflash()) { ?>
+<div style="color:red;font-size:16px;"><?php echo showflash(); ?></div><?php } ?>
+
+<script language="JavaScript">
+function shutwin(){
+window.close();
+return;}
+</script>
+
+<div class="blank30"></div>
+<div class="line_2"></div>
+<div id="tool">
+<ul>
+<li><a href="javascript:window.print()" class="print">{lang(printcontent)}</a></li>
+<li><a href="javascript:shutwin()" class="close">{lang(shutwin)}</a></li>
+</ul>
+</div><div class="line_2"></div>
+<div class="blank30"></div>
+
+
+<div class="blank30"></div>
+<a title="{lang(gotop)}" href="#" class="clear floatright"><img alt="{lang(gotop)}" src="{$skin_url}/images/gotop.gif"></a>
+<div class="blank30"></div>
+<div class="clear"></div>
+</div>
+</div>
+<!-- 右侧结束 -->
+
+<div class="c_bottom"></div>
+<div class="clear"></div>
+</div>
+<!-- 中部结束 -->
+
+<script defer>
+var obj = document.getElementById("content").getElementsByTagName("img");
+for(i=0;i<obj.length;i++){
+	if(obj[i].width>650){
+		obj[i].width = 650;
+	}
+}
+</script>
+{template 'footer.html'}

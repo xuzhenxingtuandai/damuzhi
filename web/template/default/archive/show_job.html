@@ -1,0 +1,159 @@
+{template 'header.html'}
+<!-- 面包屑导航开始 -->
+<div class="clear box">
+{template 'position.html'}
+</div><div class="blank5"></div>
+<!-- 面包屑导航结束 -->
+
+<!-- 中部开始 -->
+<div class="clear box c_bg">
+<div class="c_top"></div>
+
+<!-- 左侧开始 -->
+<div class="w_250">
+
+{template 'left.html'}
+
+<div class="clear"></div>
+</div>
+<!-- 左侧结束 -->
+
+
+<!-- 右侧开始 -->
+<div class="w_700">
+
+<div id="content" class="clear" style="width:650px;">
+
+<!-- 栏目标题开始 -->
+<div class="title mt20 mb20">
+<h3><a>{$category[$catid]['catname']}</a>/<span>{$category[$catid]['htmldir']}</span></h3>
+</div>
+<div class="line_2"></div><div class="blank20"></div>
+<!-- 栏目标题结束 -->
+
+<?php
+$set_field=type::getpositionlink($data['typeid']);
+$set_fields=array();
+if(is_array($set_field))
+foreach($set_field as $key => $value) {
+    $set_fields[]=$value[id];
+}
+?>
+
+
+<!-- 内容开始 -->
+<table width="100%" border="1" align="center" cellpadding="8" cellspacing="0" bordercolor="#CCCCCC" style="border-collapse:collapse;">
+<tr>
+<td colspan="4" background="{$skin_path}/images/th_bg.jpg" style="color:#999999">&nbsp;&nbsp;<span style="font-weight:bold; color:#EC0000;">{$archive[title]}</span> {lang('Jobdetails')}</td>
+</tr>
+<tr>
+<td height="32" width="100" align="right">{lang('Jobtype')}：</td>
+<td width="217" align="left">&nbsp;&nbsp;{$archive['my_jobtype']}</td>
+<td width="80" align="right">{lang('Jobtitle')}：</td>
+<td width="253">&nbsp;&nbsp;{$archive['my_jobtitle']}</td>
+</tr>
+<tr bgcolor="#F9F9F9">
+<td height="32" align="right" bgcolor="#F9F9F9">{lang('jobNumber')}：</td>
+<td align="left" bgcolor="#F9F9F9">&nbsp;&nbsp;{$archive['my_jobnumber']}</td>
+<td width="80" align="right">{lang('RecruitingDepartment')}：</td>
+<td bgcolor="#F9F9F9">&nbsp;&nbsp;{$archive['my_zhaopinbumen']}</td>
+</tr>
+<tr>
+<td height="32" align="right">{lang('JobGender')}：</td>
+<td align="left">&nbsp;&nbsp;{$archive['my_jobgender']}</td>
+<td width="80" align="right">{lang('JobWork')}：</td>
+<td>&nbsp;&nbsp;{$archive['my_jobwork']}</td>
+</tr>
+<tr bgcolor="#F9F9F9">
+<td height="32" align="right" bgcolor="#F9F9F9">{lang('JobAcademic')}：</td>
+<td align="left" bgcolor="#F9F9F9">&nbsp;&nbsp;{$archive['my_jobacademic']}</td>
+<td width="80" align="right">{lang('JobAge')}：</td>
+<td bgcolor="#F9F9F9">&nbsp;&nbsp;{$archive['my_jobage']}</td>
+</tr>
+<tr>
+<td height="32" align="right">{lang('JobWorkareas')}：</td>
+<td colspan="3" align="left">&nbsp;&nbsp;{$archive['my_jobworkareas']}</td>
+</tr>
+<tr bgcolor="#F9F9F9" style="line-height:25px;">
+<td height="32" align="right" valign="top">{lang('JobRequirements')}：</td>
+<td colspan="3" align="left">&nbsp;&nbsp;{$archive['my_jobrequirements']}</td>
+</tr>
+<tr>
+<td height="32" colspan="4" valign="middle" background="{$skin_path}/images/th_bg.jpg" style="color:#999999"><span style="font-weight:bold;">&nbsp;&nbsp;{lang(contactus)}</span></td>
+</tr>
+<tr>
+<td height="32" align="right">{lang('ContactName')}：</td>
+<td align="left">&nbsp;&nbsp;{$archive['my_contactname']}</td>
+<td width="80" align="right">{lang('tel')}：</td>
+<td>&nbsp;&nbsp;{get('tel')}</td>
+</tr>
+<tr bgcolor="#F9F9F9">
+<td height="32" align="right" bgcolor="#F9F9F9">{lang('fax')}：</td>
+<td align="left" bgcolor="#F9F9F9">&nbsp;&nbsp;{get('fax')}</td>
+<td width="80" align="right">{lang('email')}：</td>
+<td bgcolor="#F9F9F9">&nbsp;&nbsp;<a href="mailto:{get(email)}" class="aB">{get('email')}</a></td>
+</tr>
+<tr>
+<td height="32" align="right">{lang('address')}：</td>
+<td colspan="3" align="left">&nbsp;&nbsp;{get('address')}</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td height="16" style="border-bottom:1px dotted #E6E6E6;"> &nbsp;</td>
+</tr>
+<tr>
+<td height="58" align="right"><div class="back" style="margin-top:20px;float:right;">{myform('my_yingpin')}</div></td>
+</tr>
+</table>
+<!-- 内容结束 -->
+
+<div class="blank30"></div>
+
+<!-- 自定义表单开始 -->
+{if $archive['showform']}
+{template 'myform/nrform.html'}
+{/if}
+<!-- 自定义表单结束 -->
+
+<div class="blank30"></div>
+
+<!-- 上下页开始 -->
+<div id="page">
+{if $archive['p']['aid']}
+<strong>{lang(archivep)}：</strong><a href="{$archive['p']['url']}">{$archive['p']['title']}</a>
+{else}
+<strong>{lang(archivep)}：</strong>{lang(nopage)}	
+{/if}
+<div class="clear"></div>
+{if $archive['n']['aid']}
+ <strong>{lang(archiven)}：</strong><a href="{$archive['n']['url']}">{$archive['n']['title']}</a>
+{else}
+<strong>{lang(archiven)}：</strong>{lang(nopage)}	
+{/if}
+</div>
+<!-- 上下页结束 -->
+
+<div class="blank30"></div>
+<a title="{lang(gotop)}" href="#" class="clear floatright"><img alt="{lang(gotop)}" src="{$skin_url}/images/gotop.gif"></a>
+<div class="blank30"></div>
+<div class="clear"></div>
+</div>
+</div>
+<!-- 右侧结束 -->
+
+<div class="c_bottom"></div>
+<div class="clear"></div>
+</div>
+<!-- 中部结束 -->
+
+<script defer>
+var obj = document.getElementById("content").getElementsByTagName("img");
+for(i=0;i<obj.length;i++){
+	if(obj[i].width>620){
+		obj[i].width = 620;
+	}
+}
+</script>
+{template 'footer.html'}

@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>{lang(tipsinfo)}</title>
+<meta name="keywords" content="{if isset($archive[keyword])}{$archive[keyword]},{/if}{if isset($catid)}{$type[$catid][keyword]},{/if}{get('site_keyword')}" />
+<meta name="description" content="{if isset($archive[description])}{$archive[description]},{/if}{if isset($catid)}{$type[$catid][description]},{/if}{get('site_description')}" />
+<meta name="author" content="CmsEasy Team" />
+<link rel="icon" href="{$base_url}/favicon.ico" type="image/x-icon" />
+<style type="text/css">
+body {font-size:12px;}
+td.td_left,td.td_right {padding:3px 15px;}
+td.td_left {text-align:right;}
+.back {
+  display:block;
+  width:72px;
+  height:21px;
+  line-height:20px;
+  padding-left:10px;
+  background:url({$skin_path}/images/back.gif) left top no-repeat;
+  text-align:center;
+  color:white;
+  font-size:12px;
+  text-decoration: none;
+  border:none;
+}
+.title h1 {
+  line-height:40px;
+  padding-top:20px;
+  font-size:22px;
+  text-align:center;
+  background:url({$skin_path}/images/point.gif) left bottom repeat-x;
+  color:#333;
+  font-weight:normal;
+  font-family:'微软雅黑';
+}
+.back a,.back a:hover {text-decoration: none;color:white;}
+.f a {color:#ccc;text-decoration: none;}
+
+.blank30 {clear:both;height:30px;}
+.blank10 {clear:both;height:10px;}
+.box {clear:both; width:699px;margin:0px auto;padding:0px auto;overflow:hidden;}
+.c_top {
+  clear:both;
+  height:10px;
+  background:url({$skin_path}/images/c_top.gif) -280px top no-repeat;
+}
+
+.c_bg {
+  background:url({$skin_path}/images/c_bg.gif) left top repeat-y;
+}
+
+.c_bottom {
+  clear:both;
+  height:10px;
+  background:url({$skin_path}/images/c_bottom.gif) left top no-repeat;
+}
+
+textarea {margin:5px 0px;}
+
+</style>
+</head>
+<body>
+
+<!-- 中部开始 -->
+<div class="clear box c_bg">
+<div class="c_top"></div>
+<div style="padding:0px 20px;">
+
+<div id="content" class="clear">
+
+
+<table width="100%" border="1" align="center" cellpadding="8" cellspacing="0" bordercolor="#CCCCCC" style="border-collapse:collapse;" bgcolor="#F9F9F9" class="table">
+<th colspan="2">
+{lang(download)}
+</th>
+
+ <form id="down_form"   name="down_form" method="post"  action="<?php echo uri() ?>">   
+<tr>
+  <td style="height: 30px" align="right">
+        {lang(verifycode)}：
+  </td>
+ <td style="height: 30px" align="left">
+      <input type='text' id="verify"  tabindex="4"  name="verify" class="input" style="width:100px;" />&nbsp;{verify()} <input type="submit" name="submit" value=" {lang(download)} " class="button"   />
+ </td>
+ </tr>
+   </form> 
+
+</tbody>
+</table>
+ 
+
+<div class="blank30"></div>
+<div class="clear"></div>
+</div>
+
+
+
+<div class="clear"></div>
+
+<!-- 中部结束 -->
+
+</div>
+<div class="c_bottom"></div>
+<div class="clear"></div>
+</div>
+<div class="blank10"></div>
+<div class="f" style="color:#ccc;text-align:center;">Powered by <a href="http://www.cmseasy.cn" title="CmsEasy企业网站系统" target="_blank">CmsEasy</a>
+</div>
+</body>
+</html>

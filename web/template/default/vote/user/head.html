@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" style="overflow-x:hidden;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="zh-CN" />
+<meta content="all" name="robots" />
+<meta name="author" content="CmsEasy Team" />
+<meta name="Copyright" content="2008-2010 CmsEasy Inc" />
+<meta name="description" content="" />
+<meta content="" name="keywords" />
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /> 
+<title>{lang(membercenter)}-<?php echo get('sitename');?></title>
+<script src="{$base_url}/common/js/jquery/jquery-latest.js"></script>
+<script type="text/javascript" src="{$base_url}/common/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="{$base_url}/images/user/skin/system.js"></script>
+<style language="text/css">
+/*第一种颜色*/
+#table tr.color1{
+background-color:#FFFFFF;
+}
+/*第二种颜色*/
+#table tr.color2{
+background-color:#F8F8F8;
+}
+</style>
+     <script type="text/javascript">
+            //省市区
+            $(document).ready(function() {
+                $('#search_province_id').change(function(){
+                    $.ajax({
+                        url: '<?php echo url('area/city_option_search',false);?>',
+                        data:'province_id='+$(this).val(),
+                        type: 'POST',
+                        dataType: 'html',
+                        timeout: 1000,
+                        success: function(data){
+                            $('#search_city_id').html(data);
+                        }
+                    });
+                });
+                $('#search_city_id').change(function(){
+                    $.ajax({
+                        url: '<?php echo url('area/section_option_search',false);?>',
+                        data:'city_id='+$(this).val(),
+                        type: 'POST',
+                        dataType: 'html',
+                        timeout: 1000,
+                        success: function(data){
+                            $('#search_section_id').html(data);
+                        }
+                    });
+                });
+                $(document).ready(function() {
+                    $('#province_id').change(function(){
+                        $.ajax({
+                            url: '<?php echo url('area/city_option',false);?>',
+                            data:'province_id='+$(this).val(),
+                            type: 'POST',
+                            dataType: 'html',
+                            timeout: 1000,
+                            success: function(data){
+                                $('#city_id').html(data);
+                            }
+                        });
+                    });
+                    $('#city_id').change(function(){
+                        $.ajax({
+                            url: '<?php echo url('area/section_option',false);?>',
+                            data:'city_id='+$(this).val(),
+                            type: 'POST',
+                            dataType: 'html',
+                            timeout: 1000,
+                            success: function(data){
+                                $('#section_id').html(data);
+                            }
+                        });
+                    });
+                });
+            });
+        </script>
+		<style>
+#logo {background:url({$base_url}/images/user/skin/logo.png) no-repeat 10px 8px !important; 
+/*For Firefox*/
+*background:none;
+/*For IE7 & IE6*/
+_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='{$base_url}/images/user/skin/logo.png',sizingMethod='crop');}
+		</style>
+<!--[if IE 6]>
+<style type="text/css">
+/*ie6 fix顶端元素*/
+    #top {
+    top:expression(eval(document.documentElement.scrollTop));
+}
+/*ie6 fix底端元素*/
+#footer {
+	top: expression(eval((document.compatMode&&document.compatMode=="CSS1Compat")?documentElement.scrollTop+documentElement.clientHeight-this.clientHeight-1:document.body.scrollTop+document.body.clientHeight-this.clientHeight-1));
+}
+</style>
+<![endif]-->
+<!-- 调用样式表 -->
+<link rel="stylesheet" href="{$base_url}/images/user/skin/user.css" type="text/css" media="all"  />
+</head>
+
+<body>
+<div id="top">
+<div id="top_left">
+<div id="top_right">
+<div id="logo"><a href="{$base_url}/index.php?case=user&act=index" title="{lang(membercenter)}"><span>{lang(membercenter)}</span></a></div>
+<div class="top">
+<span class="floatright"><a href="{$base_url}/" target="_blank">{lang(homepage)}</a>	| <a href="http://www.cmseasy.org" target="_blank">{lang(bbs)}</a>	| <a href="http://www.cmseasy.org/forum-10-1.html" target="_blank">{lang(uploadreport)}</a> | <a href="http://www.cmseasy.org/forum-9-1.html" target="_blank">{lang(onlinebook)}</a></span>	
+<span class="floatleft">{lang(welcomeyou)}，{$user.username}</span>	 <a href="{url('user/logout')}" class="logout">{lang(logout)}</a>
+<div id="nav">
+<ul>
+<li><a href="{url('user/index')}"><span>{lang(memberindex)}</span></a></li>
+<li><a href="{url('manage/add/manage/archive')}"><span>{lang(addcontent)}</span></a></li>
+<li><a href="{url('manage/list/manage/archive/needcheck/1')}"><span>{lang(waitcheckedcontent)}</span></a></li>
+<li><a href="{url('manage/list/manage/archive')}"><span>{lang(alreadycheckedcontent)}</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="main">
+<div id="left">
+
+<div id="menu" class="sdmenu">
+
+<div class="collapsed">
+<span>{lang(infomanage)}</span>
+<a href="{url('user/edit/table/user')}">{lang(edituserinfo)}</a>
+<a href="{url('user/changepassword')}">{lang(changepassword)}</a>
+</div>
+
+<div class="collapsed">
+<span>{lang(contentmanage)}</span>
+<a href="{url('manage/add/manage/archive')}">{lang(addcontent)}</a>
+<a href="{url('/manage/list/manage/archive/needcheck/1')}">{lang(waitcheckedcontent)}</a>
+<a href="{url('/manage/list/manage/archive')}">{lang(alreadycheckedcontent)}</a>
+</div>
+
+<div class="collapsed">
+<span>{lang(ordersmanage)}</span>
+<a href="{url('manage/orderslist/manage/orders')}">{lang(vieworders)}</a>
+</div>
+
+<div class="collapsed">
+<span>推广联盟</span>
+<a href="{url('union/stats/manage/union')}">统计信息</a>
+<a href="{url('manage/orderslist/manage/orders')}">获取代码</a>
+<a href="{url('manage/orderslist/manage/orders')}">访问统计</a>
+<a href="{url('manage/orderslist/manage/orders')}">注册用户</a>
+<a href="{url('manage/orderslist/manage/orders')}">消费记录</a>
+<a href="{url('manage/orderslist/manage/orders')}">推广结算</a>
+<a href="{url('manage/orderslist/manage/orders')}">修改资料</a>
+</div>
+
+
+<div class="collapsed">
+<span>{lang(logout)}</span>
+<a href="{url('user/logout')}">{lang(logout)}{lang(membercenter)}</a>
+</div>
+
+</div>
+
+
+</div>
+
+
+<div id="right">
+
+{message()}
+

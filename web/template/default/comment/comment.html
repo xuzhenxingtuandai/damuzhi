@@ -1,0 +1,17 @@
+{if get('comment')=='1'}
+<div class="blank30"></div>
+<div class="line_2"></div>
+<form action="<?php echo url('comment/add'); ?>" method="POST" name="comment_form" id="comment">
+<div class="comm">
+<a rel="nofollow" href='<?php echo url('comment/list/aid/'.$archive['aid']); ?>' style="float:right;padding-right:20px;font-size:12px;">{lang('have')}<span class="commentnumber">{comment::countcomment($archive['aid'])}</span>{lang(bitofcommenters)}&nbsp;&nbsp;<strong>{lang('clicktoview')}</strong></a><strong>{lang('iwanttocomment')}:</strong></div>
+<div class="blank5"></div>
+<textarea name="content" id="textarea"></textarea>
+<div style="margin-top:10px;line-height:34px;"><input type="hidden" name="aid" value="{$aid}"/>
+{lang('username')}：<input type="text" name="username" class="input_d" value="<?php echo get('username');?>"/> &nbsp;&nbsp;<?php if(config::get('verifycode')){?>{lang('verifycode')}：{verify()} &nbsp;<input type="text" name="verify" value="" class="input_c" />&nbsp;<?php } ?><input name="submit" class="btn" value="{lang('submit')}" type="submit"/>
+</div>
+</form>
+
+<!-- 评论列表开始 -->
+{comment_js($aid)}
+<!-- 评论列表结束 -->
+{/if}

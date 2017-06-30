@@ -1,0 +1,82 @@
+{template 'header.html'}
+<div id="main">
+  <div class="lr">
+
+    <div class="left">
+    <!--左边开始--> 
+      {template 'left.html'}
+    <!--左边结束-->  
+    </div>
+	
+    <div class="right">
+    <!--右边开始--> 
+	   <div class="product">
+		 <div class="product_title">
+           <div style="float:left;"><h2>{$category[$catid][catname]}</h2></div>
+           <div style="float:right;">{template 'position.html'}</div>
+		   <div style="clear:both"></div>
+		 </div>
+		 <div class="product_con2">
+		 
+
+
+
+<!-- 右侧说明 -->
+<div id="pro_baseinfo">
+<ul>
+<li style="text-align:center; font-weight:bold; font-size:16px;">{$archive[title]}</li>
+<li style="text-align:center; padding-top:10px;"><img src="{$archive[thumb]}" /></li>
+</ul>
+
+</div>
+
+<div class="blank30"></div>
+<div class="p_info">介绍：</div>
+<!-- 内容说明 -->
+
+{$archive[content]}
+<div class="blank30"></div>
+<div id="tool">
+<ul>
+<li><a href="javascript:window.print()" class="print">{lang(printcontent)}</a></li>
+<li><a href="javascript:shutwin()" class="close">{lang(shutwin)}</a></li>
+<li style="width:90px; padding-left:5px;"><a href='<?php echo url('comment/list/aid/'.$archive['aid']); ?>' class="t_4">{lang(comment)}</a></li>
+{if $archive[attr2]}
+<li><a title="{lang(makeorders)}" target="_blank" href="{url('archive/orders/aid/'.$archive[aid],true)}" class="orders">{lang(makeorders)}</a></li>
+{/if}
+</ul>
+</div><div class="line_2"></div>
+
+<div class="blank30"></div>
+
+
+<!-- 上下页开始 -->
+<div id="page">
+{if $archive['p']['aid']}
+<strong>{lang(archivep)}：</strong><a href="{$archive['p']['url']}">{$archive['p']['title']}</a>
+{else}
+<strong>{lang(archivep)}：</strong>{lang(nopage)}	
+{/if}
+<div class="clear"></div>
+{if $archive['n']['aid']}
+ <strong>{lang(archiven)}：</strong><a href="{$archive['n']['url']}">{$archive['n']['title']}</a>
+{else}
+<strong>{lang(archiven)}：</strong>{lang(nopage)}	
+{/if}
+</div>
+<!-- 上下页结束 -->
+
+
+
+
+
+
+		 
+         </div>
+       </div>
+	<!--右边结束--> 
+    </div>
+    <div style="clear:both"></div>
+  </div>
+</div>
+{template 'footer.html'}

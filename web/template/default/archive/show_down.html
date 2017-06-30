@@ -1,0 +1,252 @@
+{template 'header.html'}
+<!-- 面包屑导航开始 -->
+<div class="clear box">
+{template 'position.html'}
+</div><div class="blank5"></div>
+<!-- 面包屑导航结束 -->
+
+<!-- 中部开始 -->
+<div class="clear box c_bg">
+<div class="c_top"></div>
+
+<!-- 左侧开始 -->
+<div class="w_250">
+
+{template 'left.html'}
+
+<div class="clear"></div>
+</div>
+<!-- 左侧结束 -->
+
+
+<!-- 右侧开始 -->
+<div class="w_700">
+
+<div id="content" class="clear" style="width:650px;overflow:hidden;">
+
+<!-- 栏目标题开始 -->
+<div class="title mt20 mb20">
+<h3><a>{$category[$catid]['catname']}</a>/<span>{$category[$catid]['htmldir']}</span></h3>
+</div>
+<div class="line_2"></div><div class="blank20"></div>
+<!-- 栏目标题结束 -->
+
+<!-- 添加css开始 -->
+<style type = "text/css">
+#pro_view {margin:12px;}
+#pro_infor {float:left; width:45%; }
+
+#image_box {
+  float:left;
+  margin:0 auto;
+  width:90%;
+
+  /*非IE的主流浏览器识别的垂直居中的方法*/
+  display: table-cell;
+  vertical-align:middle;
+  /*设置水平居中*/
+  text-align:center;
+  /* 针对IE的Hack */
+  *display: block;
+  *font-size: 139px;/*约为高度的0.873，200*0.873 约为175*/
+  *font-family:Arial;/*防止非utf-8引起的hack失效问题，如gbk编码*/
+}
+#image_box img {
+  display:block;
+  width:80%;
+  margin:0px auto;
+  vertical-align:middle;
+  padding:5px;
+  border:1px solid #ccc;
+  _border:none;
+  background:url({$skin_path}/images/pic_bg.gif) left top no-repeat;
+  border-right:1px solid white; 
+  border-bottom:1px solid white;
+  }
+
+#pro_baseinfo {float:left; width:45%;margin-left:2%;}
+#image_list {clear:both;height:50px;}
+#image_list li {width:54px; height:38px; border:1px solid #ccc;overflow:hidden;}
+#image_list img {width:50px;height:36px; padding:2px;cursor:pointer;}
+
+#pro_baseinfo ul li {line-height:32px;}
+.p_info {height:40px;line-height:40px;padding-left:20px;background:url({$skin_path}/comment.gif) left center no-repeat;border-bottom:1px dotted #ccc;}
+</style>
+<!-- 添加css结束 -->
+
+
+<div id="pro_view">
+
+<div id="pro_infor">
+
+<!-- 下载说明图片开始 -->
+<div id="image_box">
+<img alt="{$archive[stitle]}" src="{$archive[thumb]}" onerror='this.src="{config::get('onerror_pic')}"' />
+</div>
+<!-- 下载说图片结束 -->
+</div>
+
+<!-- 下载属性开始 -->
+<div id="pro_baseinfo">
+<ul>
+<li><strong>{lang(downname)}：</strong>{$archive[title]}</li>
+<li><strong>{lang(view)}：</strong>{view_js($archive[aid])}</li>
+<li><strong>{lang(adddate)}：</strong>{$archive[adddate]}</li>
+{if $archive[attr3]}<li><strong>{lang(source)}：</strong>{$archive[attr3]}</li>{/if}
+<li><strong>{lang(dong_size)}：</strong>{$archive[my_size]}</li>
+<li><strong>{lang(strgrades)}：</strong>{$archive[strgrade]}</li>
+<li><strong>{lang(nowdownload)}：</strong>{attachment_js($archive['aid'])}</li>
+</ul>
+</div>
+<!-- 下载属性结束 -->
+
+</div>
+</div>
+<div class="line_2"></div>
+<div class="blank30"></div>
+
+
+<div class="d_info">{lang(dintro)}：</div>
+<div class="blank30"></div>
+
+<!-- 下载说明开始 -->
+{$archive[content]}
+<!-- 下载说明结束 -->
+
+<div class="blank30"></div>
+
+{if $archive[attr2]}
+<!-- 价格 -->
+<div class="blank10"></div>
+{lang(productprice)}： {$archive[attr2]}
+{/if}
+
+{if $archive[tag]}
+<!-- tag -->
+<div class="blank10"></div>
+{lang(tag)}： {$archive[tag]}
+{/if}
+
+{if $archive[special]}
+<!-- 专题 -->
+<div class="blank10"></div>
+{lang(special)}： {$archive[special]}
+{/if}
+
+
+{if $archive[type]}
+<!-- 分类 -->
+<div class="blank10"></div>
+{lang(type)}： {$archive[type]}
+{/if}
+
+
+{if $archive[area]}
+<!-- 地区 -->
+<div class="blank10"></div>
+{lang(area)}： {$archive[area]}
+{/if}
+
+<div class="blank30"></div>
+{if $pages>1}
+<!-- 内页分页 -->
+<div class="blank10"></div>
+<div class="pages">
+{archive_pagination($archive)}
+</div>
+<div class="blank30"></div>
+{/if}
+
+
+
+<div class="blank30"></div>
+
+<?php if(hasflash()) { ?>
+<div style="color:red;font-size:16px;"><?php echo showflash(); ?></div><?php } ?>
+
+<!-- 投票 -->
+{vote_js($archive[aid])}
+
+
+<script language="JavaScript">
+function shutwin(){
+window.close();
+return;}
+</script>
+{if get('lang_type')=='cn'}
+<div class="blank30"></div>
+<!-- JiaThis Button BEGIN -->
+<div id="ckepop" style="margin-left:10px;">
+<a href="http://www.jiathis.com/share/" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">分享到：</a>
+<a class="jiathis_button_tools_1"></a>
+<a class="jiathis_button_tools_2"></a>
+<a class="jiathis_button_tools_3"></a>
+<a class="jiathis_button_tools_4"></a>
+</div>
+<script type="text/javascript" src="http://v2.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+{/if}
+<div class="blank30"></div>
+<div class="line_2"></div>
+<div id="tool">
+<ul>
+<li><a href="javascript:window.print()" class="print">{lang(printcontent)}</a></li>
+<li><a href="javascript:shutwin()" class="close">{lang(shutwin)}</a></li>
+<li style="width:90px; padding-left:5px;"><a href='<?php echo url('comment/list/aid/'.$archive['aid']); ?>' class="t_4">{lang(comment)}</a></li>
+{if $archive[attr2]}
+<li><a title="{lang(buy)}" target="_blank" href="{url('archive/orders/aid/'.$archive[aid],true)}">{lang(buy)}</a></li>
+<li><a title="{lang(makeorders)}" href="{url('archive/doorders/aid/'.$archive[aid],true)}">{lang(makeorders)}</a></li>
+{/if}
+</ul>
+</div><div class="line_2"></div>
+<div class="blank30"></div>
+
+<!-- 上下页开始 -->
+<div id="page">
+{if $archive['p']['aid']}
+<strong>{lang(archivep)}：</strong><a href="{$archive['p']['url']}">{$archive['p']['title']}</a>
+{else}
+<strong>{lang(archivep)}：</strong>{lang(nopage)}	
+{/if}
+<div class="clear"></div>
+{if $archive['n']['aid']}
+ <strong>{lang(archiven)}：</strong><a href="{$archive['n']['url']}">{$archive['n']['title']}</a>
+{else}
+<strong>{lang(archiven)}：</strong>{lang(nopage)}	
+{/if}
+</div>
+<!-- 上下页结束 -->
+
+<!-- 评论框开始 -->
+{template 'comment/comment.html'}
+<!-- 评论框结束 -->
+
+<!-- 自定义表单开始 -->
+{if $archive['showform']}
+{template 'myform/nrform.html'}
+{/if}
+<!-- 自定义表单结束 -->
+
+
+<div class="blank30"></div>
+<a title="{lang(gotop)}" href="#" class="clear floatright"><img alt="{lang(gotop)}" src="{$skin_url}/images/gotop.gif"></a>
+<div class="blank30"></div>
+<div class="clear"></div>
+</div>
+
+<!-- 右侧结束 -->
+
+<div class="c_bottom"></div>
+<div class="clear"></div>
+</div>
+<!-- 中部结束 -->
+
+<script defer>
+var obj = document.getElementById("content").getElementsByTagName("img");
+for(i=0;i<obj.length;i++){
+	if(obj[i].width>620){
+		obj[i].width = 620;
+	}
+}
+</script>
+{template 'footer.html'}

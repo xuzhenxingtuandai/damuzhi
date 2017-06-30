@@ -1,0 +1,80 @@
+{template 'header.html'}
+<!-- 面包屑导航开始 -->
+<div class="clear box">
+{template 'position.html'}
+</div><div class="blank5"></div>
+<!-- 面包屑导航结束 -->
+
+<!-- 中部开始 -->
+<div class="clear box c_bg">
+<div class="c_top"></div>
+
+<!-- 左侧开始 -->
+<div class="w_250">
+
+{template 'left.html'}
+
+<div class="clear"></div>
+</div>
+<!-- 左侧结束 -->
+
+
+<!-- 右侧开始 -->
+<div class="w_700">
+
+<div id="content" class="clear">
+<!-- 栏目标题开始 -->
+<div class="title mt20 mb20">
+<h3><a>{lang('commentlist')}</a>/<span>Comment List</span></h3>
+</div>
+<div class="line_2"></div><div class="blank20"></div>
+<!-- 栏目标题结束 -->
+
+
+<!-- 评论 -->
+<div id="comment">
+<!-- 评论框开始 -->
+<form action="<?php echo url('comment/add'); ?>" method="POST" name="comment_form" id="comment">
+<div class="comm">
+<a style="float:right;padding-right:20px;font-size:12px;">{lang('have')}<span class="commentnumber">{comment::countcomment($archive['aid'])}</span>{lang(bitofcommenters)}&nbsp;&nbsp;<strong>{lang('clicktoview')}</strong></a><strong>{lang('iwanttocomment')}:</strong></div>
+<div class="blank5"></div>
+<textarea name="content" id="textarea"></textarea>
+<div style="margin-top:10px;line-height:34px;"><input type="hidden" name="aid" value="{$aid}"/>
+{lang('username')}：<input type="text" name="username" class="key" value="<?php echo get('username');?>"/> &nbsp;&nbsp;<?php if(config::get('verifycode')){?>{lang('verifycode')}：{verify()} &nbsp;<input type="text" name="verify" value="" size="4" />&nbsp;<?php } ?><input name="submit" class="btn" value="{lang('submit')}" type="submit"/>
+</div>
+</form>
+<!-- 评论框结束 -->
+</div>
+
+<div class="blank30"></div>
+<div class="line_2"></div>
+<div class="comm"><strong>{lang('commentlist')}：</strong></div>
+<div class="blank30"></div>
+
+<dl class="comment_list">
+
+{loop $comments $comment}
+<dt><strong>{lang('username')}：{$comment[username]}</strong><span>{sdate($comment[adddate],'Y-m-d H:i')}</span></dt>
+<dd>{strip_tags($comment[content])}</dd>
+<?php if(!isset($i)) $i=0;  $i++; if($i<count($comments)) {echo "<br>";} else unset($i); ?>
+{/loop}
+</dl>
+<div class="clear blank30"></div>
+<div class="pages">
+ {pagination::html($record_count)}
+</div>
+
+
+<div class="blank30"></div>
+<a title="{lang(gotop)}" href="#" class="clear floatright"><img alt="{lang(gotop)}" src="{$skin_url}/images/gotop.gif"></a>
+<div class="blank30"></div>
+<div class="clear"></div>
+</div>
+</div>
+<!-- 右侧结束 -->
+
+<div class="c_bottom"></div>
+<div class="clear"></div>
+</div>
+<!-- 中部结束 -->
+{template 'footer.html'}

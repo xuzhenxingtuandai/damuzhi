@@ -1,0 +1,12 @@
+
+<div class="blank30"></div>
+<div class="line_2"></div>
+<div class="comm"><strong>{lang('commentlist')}：</strong></div>
+<div class="blank30"></div>
+<!-- 评论列表开始 -->
+<dl class="comment_list">{loop $comments $comment}
+<dt><strong>{lang('username')}：{$comment['username']}</strong><span>{sdate($comment['adddate'],'Y-m-d H:i')}</span></dt>
+<dd>{strip_tags($comment['content'])}</dd>
+<?php if(!isset($i)) $i=0;  $i++; if($i<count($comments)) {echo "<br>";} else unset($i); ?>
+{/loop}</dl>
+<!-- 评论列表结束 -->

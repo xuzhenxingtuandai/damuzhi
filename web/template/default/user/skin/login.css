@@ -1,0 +1,40 @@
+/* CSS Document */
+.air { height:10px; clear:both; overflow:hidden;  }
+.clear { height:0; clear:both; overflow:hidden; }
+
+#imageField {background:url(images/pass.gif) no-repeat;width:112px;height:34px;line-height:34px;border:none;color:white;font-weight:bold;font-size:12px;}
+
+
+.outerBox {width:100%; background:url(images/login_31.gif) repeat-y; text-align:left;}
+	.outerBox_t { background:url(images/login_03.gif) no-repeat top; }
+	.outerBox_b { background:url(images/login_32.gif) no-repeat bottom; padding:20px;}
+	.outerBox .ico { position:absolute; z-index:50;  }
+	
+	.outerBox .topBar { font-size:14px; color:#838383; line-height:24px; padding:10px; padding-left:110px; border-bottom:1px solid #d3e0e9; }
+		.outerBox .topBar strong { font-family:"Microsoft Yahei"; line-height:36px; font-weight:normal; font-size:22px; color:#2b4675; }
+	.outerBox .iBox { border-top:1px solid #f3f7f9; padding-left:110px; overflow:hidden; _position:absolute;  }
+		.outerBox .uleft { float:left; width:400px;overflow:hidden;  }
+			.loginBox { width:396px; background:url(images/login_10.gif) repeat-y; margin-top:30px; }
+				.loginBox .t { background:url(images/login_07.gif) no-repeat top; }
+				.loginBox .b { background:url(images/login_29.gif) no-repeat bottom; padding:20px; }
+				.loginBox li { padding:3px 0; height:26px; display:block; }
+				.loginBox .tle { font-size:14px; color:#838383; }
+				.loginBox .id { float:left; background:url(images/login_13.gif) no-repeat; width:200px; height:26px; padding:0 10px 0 30px; }
+					.loginBox .id input { border:none; background:none; width:200px; height:26px; line-height:26px; }
+				.loginBox .pw { float:left; background:url(images/login_16.gif) no-repeat; width:200px; height:26px; padding:0 10px 0 30px; }
+					.loginBox .pw input { border:none; background:none; width:200px; height:26px; line-height:26px; }
+				.loginBox .verify { float:left; background:url(images/login_18-23.gif) no-repeat; width:60px; height:26px; padding:0 5px; }
+					.loginBox .verify input { border:none; background:none; width:60px; height:26px; line-height:26px; }
+				.loginBox a { background:url(images/arrow05.gif) no-repeat left; padding-left:5px; font-size:14px; color:#8eb4dc; float:left; margin-left:10px; line-height:26px; }
+				.loginBox .submit { float:left; }
+				
+		.outerBox .uright { float:right; width:400px;overflow:hidden; }
+			.outerBox .wrd { padding:20px; }
+				.outerBox .wrd h6 { font-family:"Microsoft Yahei"; font-size:15px; color:#2b4675; line-height:40px; }
+				.outerBox .wrd ul { line-height:40px; color:#6c7f95; }
+		
+		.loginBox .id1 { float:left; background:url(images/login_13_1.gif) no-repeat; width:225px; height:26px; padding:0 10px 0 5px; }
+					.loginBox .id1 input { border:none; background:none; width:200px; height:26px; line-height:26px; }
+		
+	
+	

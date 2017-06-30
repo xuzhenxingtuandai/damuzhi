@@ -1,0 +1,9 @@
+<script language="JavaScript">
+bg = new Array(3);
+bg[0] = '{get(cslide_pic1)}'
+bg[1] = '{get(cslide_pic2)}'
+bg[2] = '{get(cslide_pic3)}'
+
+index = Math.floor(Math.random() * bg.length);
+document.write("<img src="+bg[index]+" />");
+</script>

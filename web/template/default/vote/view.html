@@ -1,0 +1,51 @@
+{if vote::title($aid,1)}
+
+<form name="voteform" method="post" action="<?php echo url('vote/do'); ?>">
+    <input type="hidden" name="aid" value="{$aid}"/>
+
+        <div id="content_vote">
+            {if !vote::voted($aid,$user['username'])}
+			<h5>{lang(vote)}：</h5>
+            <ul>
+                <?php $i=1; while(vote::title($aid,$i)) { ?>
+
+                <li>
+                   <span class="content-num"> {$i}</span> <span>{vote::title($aid,$i)}</span>
+                    {if vote::img($aid,$i)}
+                    <img src="{vote::img($aid,$i)}" width="60" />
+                    {/if}
+                   <div class=optionba> {=form::radio('vote',$i,0)} </div>
+				   <div class="clear">&nbsp;</div>
+                </li>
+
+                <?php $i++; } unset($i); ?>
+
+            </ul>
+ <div class="blank10">&nbsp;</div>
+            {form::submit()}
+            {else}
+<h5>{lang(vote)}{lang(results)}：</h5>
+            <ul>
+                
+                
+                <?php $i=1; while(vote::title($aid,$i)) { ?>
+
+                <li>
+                    <span class="num">{$i}</span> <span>{vote::title($aid,$i)}</span>
+                        {if vote::img($aid,$i)}
+                        <img src="{vote::img($aid,$i)}" />
+                        {/if}
+      
+                    <div class=optionbar><div style="width: {=vote::get($aid,$i)*3+5}px;"></div></div>
+                    {=vote::get($aid,$i)}
+                    <div class="clear">&nbsp;</div>
+                </li>
+
+                <?php $i++; } unset($i);?>
+
+            </ul>
+
+            {/if}
+            </div>
+</form>
+{/if}

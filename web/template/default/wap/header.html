@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta content="telephone=no" name="format-detection">
+
+<meta http-equiv="x-rim-auto-match" content="none">
+<title>{getTitle($archive,$category,$catid,$type)} - Powered by CmsEasy</title>
+<meta name="keywords" content="{getKeywords($archive,$category,$catid,$type)}" />
+<meta name="description" content="{getDescription($archive,$category,$catid,$type)}" />
+<meta name="author" content="CmsEasy Team" />
+<link href="{$skin_path}/wap.css" rel="stylesheet" /> 
+</head>
+<body>
+
+<div id="header">
+<div class="box">
+<center><a href="{$base_url}/wap/" title="{get(sitename)}" class="logo"><img src="{get('wap_logo')}" alt="{get(sitename)}" /></a></center>
+</div>
+</div>
+
+
+<div id="menu">
+<div class="box">
+<a title="{lang(backhome)}" href="{$base_url}/index.php?t=wap">{lang(homepage)}</a>
+{loop categories_nav() $t}
+<a href="{$t['url']}" title="{$t[catname]}">{$t[catname]}</a>
+{loop categories($t[catid]) $t1}
+<a title="{$t1[catname]}" href="{$t1[url]}">{$t1[catname]}</a>
+{/loop}
+{/loop}
+<div class="clear"></div>
+</div>
+</div>
+
+<div id="search">
+<form name='search' action="<?php echo url('archive/search/t/wap');?>" onsubmit="search_check();" method="post">
+{lang('search')}：
+<input type="text" name="keyword" class="s_text" />
+<?php echo form::select('catid',front::post('catid'),category::option(0,all,$op=array(0=>''.$lang['all_columns'].'')));?>
+<input name='submit' type="submit" value=" {lang('search')} " class="s_btn" align="middle" />
+</form>
+</div>
+<div class="search_b"></div>

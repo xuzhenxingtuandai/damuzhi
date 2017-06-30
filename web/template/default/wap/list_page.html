@@ -1,0 +1,37 @@
+{template 'wap/header.html'}
+<div class="blank10"></div>
+<div class="title">{if $category[$catid][parentid]}<a href="{category::url($category[$catid][parentid])}">{$category[$category[$catid][parentid]][catname]}</a> &gt; {/if}<a href="{category::url($catid)}">{$category[$catid][catname]}</a></div>
+
+{if $subids}
+<div id="search">
+{loop $subids $id}
+<a href="{category::url($id)}">{$category[$id][catname]}</a> |
+{/loop}
+</div>
+<div class="search_b"></div>
+{/if}
+
+
+<div class="clear box">
+<div id="content">
+<div class="p10">
+
+{$category[$catid][categorycontent]}
+
+
+<div class="blank10"></div>
+<div class="blank10"></div>
+<a href="javascript:history.back(-1)">{lang(backuppage)}</a>	|	<a href="{$base_url}/wap/">{lang(backhome)}</a>
+<div class="blank10"></div>
+</div>
+</div>
+</div>
+<script defer>
+var obj = document.getElementById("content").getElementsByTagName("img");
+for(i=0;i<obj.length;i++){
+	if(obj[i].width>260){
+		obj[i].width = 260;
+	}
+}
+</script>
+{template 'wap/footer.html'}

@@ -1,0 +1,113 @@
+{template 'wap/header.html'}
+<div class="blank10"></div>
+<div class="title"><a>{$archive[title]}</a></div>
+
+<div class="box">
+<div class="p10">
+
+<div class="blank10"></div>
+
+<style type = "text/css">
+#image_box img {
+  width:160px;
+  padding:5px;
+  border:1px solid #ccc;
+  background:url({$skin_path}/images/pic_bg.gif) left top no-repeat;
+  border-right:1px solid white; 
+  border-bottom:1px solid white;
+}
+
+#pro_baseinfo ul li {line-height:32px;}
+.p_info {height:40px;line-height:40px;padding-left:20px;background:url({$skin_path}/images/comment.gif) left center no-repeat;border-bottom:1px dotted #ccc;}
+</style>
+
+<div id="image_box">{if $archive['thumb']}
+<img src="{$archive['thumb']}" alt="" id="current_img" />{else}<img src="{config::get('onerror_pic')}" id="current_img" />
+{/if}</div>
+
+<div class="blank10"></div>
+<div class="blank10"></div>
+
+<ul>
+<li><strong>{lang(productname)}：</strong>{$archive[title]}</li>
+{if $archive['attr2']}
+{if $archive['attr2']==$archive['oldprice']}
+<li><strong>{lang(price)}：</strong><span>{$archive['attr2']}</span>{lang(unit)}</li>
+{else}
+<li><strong>{lang(list_price)}：</strong><span style="text-decoration:line-through;">{$archive['oldprice']}</span>{lang(unit)} </li>
+<li><strong>{lang(discount)}：</strong><span>{$archive['attr2']}</span>{lang(unit)}</li>
+{/if}
+</li>
+{/if}
+<li><strong>{lang(view)}：</strong>{view_js($archive[aid])}</li>
+<li><strong>{lang(adddate)}：</strong>{$archive[adddate]}</li>
+<li><strong>{lang(strgrades)}：</strong>{$archive[strgrade]}</li>
+<li>&nbsp;</li>
+{if $archive[attr2]}<li><a target="_blank" href="{url('archive/orders/aid/'.$archive[aid],true)}"><img src="{$skin_path}/images/buy.gif" /></a></li>{/if}
+</ul>
+
+
+<div class="blank10"></div>
+<div class="p_info">{lang(pintro)}：</div>
+<div class="blank10"></div>
+
+<div id="content">
+
+{$archive[content]}
+
+</div>
+
+<div class="blank10"></div>
+
+
+{if $pages>1}
+<!-- 内页分页 -->
+<div class="blank10"></div><div class="blank10"></div>
+{archive_pagination($archive)}
+<div class="blank10"></div><div class="blank10"></div>
+{/if}
+
+{if $archive[tag]}
+<!-- tag -->
+<div class="blank10"></div>
+{lang(tag)}： {$archive[tag]}
+{/if}
+
+{if $archive[special]}
+<!-- 专题 -->
+<div class="blank10"></div>
+{lang(special)}： {$archive[special]}
+{/if}
+
+
+{if $archive[type]}
+<!-- 分类 -->
+<div class="blank10"></div>
+{lang(type)}： {$archive[type]}
+{/if}
+
+
+{if $archive[area]}
+<!-- 地区 -->
+<div class="blank10"></div>
+{lang(area)}： {$archive[area]}
+{/if}
+
+
+<div class="blank10"></div>
+<div class="blank10"></div>
+<a href="javascript:history.back(-1)">{lang(backuppage)}</a>	|	<a href="{$base_url}/wap/">{lang(backhome)}</a>
+<div class="blank10"></div>
+</div>
+</div>
+
+
+<script defer>
+var obj = document.getElementById("content").getElementsByTagName("img");
+for(i=0;i<obj.length;i++){
+	if(obj[i].width>260){
+		obj[i].width = 260;
+	}
+}
+</script>
+{template 'wap/footer.html'}
